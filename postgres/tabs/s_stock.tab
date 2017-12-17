@@ -1,0 +1,12 @@
+DROP TABLE s_stock;
+
+CREATE TABLE s_stock(
+  s_stock_date      DATE,
+  s_stock_open      REAL,
+  s_stock_high      REAL,
+  s_stock_low       REAL,
+  s_stock_close     REAL,
+  s_stock_volume    INTEGER,
+  s_stock_adj_close REAL
+)
+;

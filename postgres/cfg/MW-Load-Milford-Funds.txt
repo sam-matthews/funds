@@ -1,0 +1,11 @@
+SYMBOL,EXCHANGE,TYPE,CURRENCY,MINTICK,TITLE
+MPC,Milford,INDEX,NZD,0.0001,Milford Conservative Fund
+MPD,Milford,INDEX,NZD,0.0001,Milford Diversified Fund
+MPB,Milford,INDEX,NZD,0.0001,Milford Balanced Fund
+MPA,Milford,INDEX,NZD,0.0001,Milford Active Fund
+MPG,Milford,INDEX,NZD,0.0001,Milford Global Fund
+MPT,Milford,INDEX,NZD,0.0001,Milford Trans-Tasman Fund
+MPY,Milford,INDEX,NZD,0.0001,Milford Dynamic Fund
+MKC,Milford,INDEX,NZD,0.0001,Milford Kiwi Saver Conservative Fund
+MKB,Milford,INDEX,NZD,0.0001,Milford Kiwi Saver Balanced Fund
+MKA,Milford,INDEX,NZD,0.0001,Milford Kiwi Saver Active Fund

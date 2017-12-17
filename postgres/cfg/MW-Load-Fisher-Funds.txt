@@ -1,0 +1,6 @@
+SYMBOL,EXCHANGE,TYPE,CURRENCY,MINTICK,TITLE
+FPI,Fisher,INDEX,NZD,0.0001,Fisher Income Fund
+FPP,Fisher,INDEX,NZD,0.0001,Fisher Infrastructure Fund
+FPZ,Fisher,INDEX,NZD,0.0001,Fisher NZ Growth Fund
+FPA,Fisher,INDEX,NZD,0.0001,Fisher Australian Growth Fund
+FPG,Fisher,INDEX,NZD,0.0001,Fisher Global Fund

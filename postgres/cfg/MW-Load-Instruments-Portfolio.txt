@@ -1,0 +1,7 @@
+SYMBOL,EXCHANGE,TYPE,CURRENCY,MINTICK,TITLE
+PKT,Portfolio,INDEX,NZD,0.0001,Kate Healy Family Trust
+PKS,Portfolio,INDEX,NZD,0.0001,Kate and Sam Joint Investments
+PKM,Portfolio,INDEX,NZD,0.0001,Sam Kiwi Saver Investment Portfolio
+PKH,Portfolio,INDEX,NZD,0.0001,Kate Healy Personal Investments
+PSM,Portfolio,INDEX,NZD,0.0001,Sam Matthews Personal Investments
+PTO,Portfolio,INDEX,NZD,0.0001,Total Portfolio Calculation
