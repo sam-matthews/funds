@@ -1,10 +1,13 @@
 #!/bin/bash
 
-APPHOME="${HOME}/source/Security"
+APPNAME="funds"
+APPHOME="${HOME}/source/${APPNAME}"
 DBHOME="${APPHOME}/postgres"
 CFGHOME="${DBHOME}/cfg"
-UNLOADHOME="${APPHOME}/data/unload"
-LOADHOME="${APPHOME}"
+
+DATAHOME=${HOME}/DATA
+UNLOADHOME="${DATAHOME}/unload"
+LOADHOME="${DATAHOME}/load"
 
 CSVLOADFILE="${UNLOADHOME}/FULL-2017-12-13-PRICE.csv"
 echo "${CSVLOADFILE}"

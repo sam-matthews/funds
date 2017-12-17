@@ -1,12 +1,15 @@
 #!/bin/bash
 
-APPHOME="${HOME}/source/Security"
+APPNAME="funds"
+APPHOME="${HOME}/source/${APPNAME}"
 DBHOME="${APPHOME}/postgres"
 CFGHOME="${DBHOME}/cfg"
-UNLOADHOME="${APPHOME}/data/unload"
-LOADHOME="${APPHOME}/data/load/price-diff"
 
-CSVLOADFILE="${LOADHOME}/price-diff-s_price.csv"
+DATAHOME=${HOME}/DATA
+UNLOADHOME="${DATAHOME}/unload"
+LOADHOME="${DATAHOME}/load"
+
+CSVLOADFILE="${LOADHOME}/price-diff/price-diff-s_price.csv"
 
 CURR_DATE=`date "+%Y-%m-%d"`
 

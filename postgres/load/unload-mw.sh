@@ -1,9 +1,13 @@
 #!/bin/bash
 
-APPHOME="${HOME}/source/Security"
+APPNAME="funds"
+APPHOME="${HOME}/source/${APPNAME}"
 DBHOME="${APPHOME}/postgres"
 CFGHOME="${DBHOME}/cfg"
-UNLOADHOME="${APPHOME}/data/unload/"
+
+DATAHOME=${HOME}/DATA
+UNLOADHOME="${DATAHOME}/unload"
+LOADHOME="${DATAHOME}/load"
 
 for fund in `cat ${CFGHOME}/mw-funds.cfg`
 do

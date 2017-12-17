@@ -9,5 +9,5 @@ COPY price(
   price_type1,
   price_type2,
   price_price)
-FROM '/home/sam/Security/Investment2.0-Price.csv' DELIMITER ',' CSV HEADER
+FROM '/home/sam/DATA/Security/Investment2.0-Price.csv' DELIMITER ',' CSV HEADER
 ;
