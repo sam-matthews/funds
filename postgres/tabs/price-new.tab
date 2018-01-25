@@ -1,6 +1,6 @@
-DROP TABLE price-new;
+DROP TABLE price_new;
 
-CREATE TABLE price-new(
+CREATE TABLE price_new(
   p_date DATE,
   p_fund CHAR(10),
   p_price REAL)
