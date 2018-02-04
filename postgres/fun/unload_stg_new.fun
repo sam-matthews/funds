@@ -10,8 +10,8 @@ DECLARE
 
 BEGIN
   counter := 0;
-  raise notice 'Loading data into Stage Table.';
-  raise notice 'Delete Table: s_stock';
+  raise notice 'Loading: %', fund;
+
   -- TRUNCATE TABLE s_stock;
   DELETE FROM s_stock;
 
@@ -29,12 +29,7 @@ BEGIN
 
     -- If first record
     IF counter = 1 then
-      raise notice '========================';
-      raise notice 'date:%',ref.p_date;
-      raise notice 'open:%',ref.p_price;
-      raise notice 'high:%',ref.p_price;
-      raise notice 'low:%',ref.p_price;
-      raise notice 'close:%',ref.p_price;
+
 
       INSERT INTO s_stock VALUES(
         ref.p_date,
@@ -56,12 +51,6 @@ BEGIN
           high_price := close_price;
         END IF;
 
-        raise notice '========================';
-        raise notice 'date:%',  ref.p_date;
-        raise notice 'open:%',  close_price;
-        raise notice 'high:%',  high_price;
-        raise notice 'low:%',   low_price;
-        raise notice 'close:%', ref.p_price;
 
         INSERT INTO s_stock VALUES(
           ref.p_date,
@@ -78,8 +67,6 @@ BEGIN
     close_price := ref.p_price;
 
   END LOOP;
-
-  raise notice 'Count: %', counter;
 
 END;
 $$ LANGUAGE plpgsql;
