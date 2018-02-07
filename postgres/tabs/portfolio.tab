@@ -1,0 +1,8 @@
+DROP TABLE PORTFOLIO;
+
+CREATE TABLE PORTFOLIO(
+  p_date DATE,
+  p_portfolio CHAR(10),
+  p_fund CHAR(10),
+  p_value REAL)
+;
