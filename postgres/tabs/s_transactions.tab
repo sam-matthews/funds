@@ -1,0 +1,10 @@
+DROP TABLE S_TRANSACTIONS;
+
+CREATE TABLE S_TRANSACTIONS(
+  t_date DATE,
+  t_fund CHAR(10),
+  t_portfolio CHAR(10),
+  t_type CHAR(4),
+  t_qty REAL,
+  t_comments CHAR(500))
+;
