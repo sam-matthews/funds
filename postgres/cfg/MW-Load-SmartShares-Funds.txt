@@ -1,2 +1,3 @@
 SYMBOL,EXCHANGE,TYPE,CURRENCY,MINTICK,TITLE
-ASR,SMartShares,FUND,NZD,0.01,Australian Resource Index
+ASR,SmartShares,INDEX,NZD,0.01,Australian Resource Index
+APR,SmartShares,INDEX,NZD,0.01,Asia Pacific Index. Based on VanGuard FTSE Pacific ETF
