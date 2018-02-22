@@ -6,3 +6,5 @@ AIF_HI,AMP,INDEX,NZD,0.0001,AMP Capital Core Hedged Global Shares Fund
 AIF_I,AMP,INDEX,NZD,0.0001,AMP Capital Global Shares Fund
 AIF_O,AMP,INDEX,NZD,0.0001,AMP Capital Australian Shares Fund
 AIF_R,AMP,INDEX,NZD,0.0001,AMP Capital Responsible Investment Leaders Global Shares Fund
+AIF_E,AMP,INDEX,NZD,0.0001,AMP NZ Share Fund
+AIF_RE,AMP,INDEX,NZD,0.0001,AMP NZ Share Fund - responsibility

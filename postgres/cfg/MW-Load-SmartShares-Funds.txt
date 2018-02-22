@@ -1,3 +1,18 @@
 SYMBOL,EXCHANGE,TYPE,CURRENCY,MINTICK,TITLE
-ASR,SmartShares,INDEX,NZD,0.01,Australian Resource Index
-APR,SmartShares,INDEX,NZD,0.01,Asia Pacific Index. Based on VanGuard FTSE Pacific ETF
+ASR,SmartShares,INDEX,NZD,0.0001,Australian Resource Index
+APA,SmartShares,INDEX,NZD,0.0001,Asia Pacific Index. Based on VanGuard FTSE Pacific ETF
+EMF,SmartShares,INDEX,NZD,0.0001,Smartshares emerging market fund
+EUF,SmartShares,INDEX,NZD,0.0001,Smartshares European fund.
+FNZ,SmartShares,INDEX,NZD,0.0001,Smartshares NZ Top 50
+MDZ,SmartShares,INDEX,NZD,0.0001,NZ Mid Cap
+MZY,SmartShares,INDEX,NZD,0.0001,Aus Mid Cap
+OZY,SmartShares,INDEX,NZD,0.0001,Aus Top 20
+USF,SmartShares,INDEX,NZD,0.0001,US 500 (Based on S&P 500)
+USG,SmartShares,INDEX,NZD,0.0001,US Large Growth
+USM,SmartShares,INDEX,NZD,0.0001,US Mid Cap
+USS,SmartShares,INDEX,NZD,0.0001,US Small Cap
+USV,SmartShares,INDEX,NZD,0.0001,US Large Value
+TNZ,SmartShares,INDEX,NZD,0.0001,NZ Top 10
+TWF,SmartShares,INDEX,NZD,0.0001,World index
+ASF,SmartShares,INDEX,NZD,0.0001,Australian FInancials
+ASD,SmartShares,INDEX,NZD,0.0001,Australian property

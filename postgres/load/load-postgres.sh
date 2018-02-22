@@ -56,5 +56,5 @@ EOF
 
 # Deleting files older than 10 days.
 echo "Removing files older than 10 days."
-find ${UNLOADHOME} -name 'FULL-*-PRICE.csv' -mtime +10 -exec ls -l {} \;
+find ${UNLOADHOME} -name 'FULL-*-PRICE.csv' -mtime +10 -exec rm {} \;
 
