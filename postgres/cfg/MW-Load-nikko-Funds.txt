@@ -1,0 +1,6 @@
+SYMBOL,EXCHANGE,TYPE,CURRENCY,MINTICK,TITLE
+NPC,Nikko,INDEX,NZD,0.0001,Nikko AM Core Equity Fund
+NPE,Nikko,INDEX,NZD,0.0001,Nikko AM Concentrated equity fund
+NPG,Nikko,INDEX,NZD,0.0001,Nikko AM global shares fund
+NPU,Nikko,INDEX,NZD,0.0001,Nikko AM Global unhedged fund
+NPH,Nikko,INDEX,NZD,0.0001,Nikko AM Global hedged fund

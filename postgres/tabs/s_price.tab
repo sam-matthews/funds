@@ -1,9 +1,7 @@
 DROP TABLE s_price;
 
 CREATE TABLE s_price(
-  s_price_date DATE,
-  s_price_secu CHAR(10),
-  s_price_type1 CHAR(10),
-  s_price_type2 CHAR(10),
-  s_price_price REAL
+  sp_date DATE,
+  sp_fund CHAR(10),
+  sp_price REAL
 );

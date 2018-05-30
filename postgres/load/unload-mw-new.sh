@@ -13,9 +13,9 @@ for fund in `cat ${CFGHOME}/mw-funds.cfg`
 do
   echo $fund
 
-  psql << EOF
+  psql << EOF > /dev/null
 
-    SELECT mw('$fund');
+    SELECT mw_new('$fund');
 
     COPY (
     SELECT

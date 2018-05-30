@@ -1,7 +1,16 @@
 SYMBOL,EXCHANGE,TYPE,CURRENCY,MINTICK,TITLE
-PKT,Portfolio,INDEX,NZD,0.0001,Kate Healy Family Trust
-PKS,Portfolio,INDEX,NZD,0.0001,Kate and Sam Joint Investments
-PKM,Portfolio,INDEX,NZD,0.0001,Sam Kiwi Saver Investment Portfolio
-PKH,Portfolio,INDEX,NZD,0.0001,Kate Healy Personal Investments
-PSM,Portfolio,INDEX,NZD,0.0001,Sam Matthews Personal Investments
-PTO,Portfolio,INDEX,NZD,0.0001,Total Portfolio Calculation
+VIF,Fund,INDEX,NZD,0.0001,Vanguard Global Fund
+VHF,Fund,INDEX,NZD,0.0001,Vanguard Global Fund (Hedged)
+TRUST,Portfolio,INDEX,NZD,1,Kate Healy Family Trust
+JOINT,Portfolio,INDEX,NZD,1,Kate and Sam Joint Investments
+KIWI_SAM,Portfolio,INDEX,NZD,1,Sam Kiwi Saver Investment Portfolio
+KATE,Portfolio,INDEX,NZD,1,Kate Healy Personal Investments
+SAM,Portfolio,INDEX,NZD,1,Sam Matthews Personal Investments
+TOTAL,Portfolio,INDEX,NZD,1,Total Portfolio Calculation
+Y^VIX,Yahoo,INDEX,NZD,.01,^VIX Fear Indicator
+Y^DJI,Yahoo,INDEX,NZD,.01,Dow Jones Industrial Average Index
+UST1YR,US Treasury,NZD,.01,US Treasury Bond Yield 1Yr
+UST5YR,US Treasury,NZD,.01,US Treasury Bond Yield 5Yr
+UST10YR,US Treasury,NZD,.01,US Treasury Bond Yield 10Yr
+IAI,Other,INDEX,NZD,.01,Investopedia Anxiety Index
+MIAI,Other,INDEX,NZD,.01,Investopedia Market Anxiety Index
