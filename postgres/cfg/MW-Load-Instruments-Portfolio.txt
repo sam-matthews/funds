@@ -12,3 +12,5 @@ Y^DJI,Yahoo,INDEX,NZD,.01,Dow Jones Industrial Average Index
 UST1YR,US Treasury,NZD,.01,US Treasury Bond Yield 1Yr
 UST5YR,US Treasury,NZD,.01,US Treasury Bond Yield 5Yr
 UST10YR,US Treasury,NZD,.01,US Treasury Bond Yield 10Yr
+IAI,Other,INDEX,NZD,.01,Investopedia Anxiety Index
+MIAI,Other,INDEX,NZD,.01,Investopedia Market Anxiety Index

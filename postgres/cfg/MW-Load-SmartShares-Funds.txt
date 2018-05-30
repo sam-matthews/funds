@@ -1,5 +1,6 @@
 SYMBOL,EXCHANGE,TYPE,CURRENCY,MINTICK,TITLE
 ASR,SmartShares,INDEX,NZD,0.0001,Australian Resource Index
+ASP,SmartShares,INDEX,NZD,0.0001,Australian property fund
 APA,SmartShares,INDEX,NZD,0.0001,Asia Pacific Index. Based on VanGuard FTSE Pacific ETF
 EMF,SmartShares,INDEX,NZD,0.0001,Smartshares emerging market fund
 EUF,SmartShares,INDEX,NZD,0.0001,Smartshares European fund.
@@ -16,3 +17,5 @@ TNZ,SmartShares,INDEX,NZD,0.0001,NZ Top 10
 TWF,SmartShares,INDEX,NZD,0.0001,World index
 ASF,SmartShares,INDEX,NZD,0.0001,Australian FInancials
 ASD,SmartShares,INDEX,NZD,0.0001,Australian property
+DIV,SmartShares,INDEX,NZD,0.0001,NZ Dividend Fund
+NPF,SmartShares,INDEX,NZD,0.0001,NZ Property Fund

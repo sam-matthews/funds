@@ -42,6 +42,10 @@ psql << EOF
       price_new
     ;
 
+  -- Delete rows where p_price IS NULL. This will remove any blank rows which get imported.
+
+  DELETE FROM price_new WHERE p_price IS NULL;
+
   COPY (
     SELECT
       p_date,
