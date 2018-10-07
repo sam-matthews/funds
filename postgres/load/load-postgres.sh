@@ -2,6 +2,10 @@
 
 # Sam Matthews
 
+# Potential changes.
+# Add Funds to a lookup table, then scan through this table instead of looking through an external file.
+
+
 APPNAME="funds"
 APPHOME="${HOME}/Documents/CODE/${APPNAME}"
 DBHOME="${APPHOME}/postgres"
@@ -45,7 +49,6 @@ psql << EOF
     ;
 
   -- Delete rows where p_price IS NULL. This will remove any blank rows which get imported.
-
   DELETE FROM price_new WHERE p_price IS NULL;
 
   COPY (
