@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Sam Matthews
+
 APPNAME="funds"
 APPHOME="${HOME}/Documents/CODE/${APPNAME}"
 DBHOME="${APPHOME}/postgres"
