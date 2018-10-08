@@ -4,6 +4,7 @@
 
 # Potential changes.
 # Add Funds to a lookup table, then scan through this table instead of looking through an external file.
+# Added release tag 0.1
 
 
 APPNAME="funds"
