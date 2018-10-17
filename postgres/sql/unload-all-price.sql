@@ -3,7 +3,7 @@
   Sam Matthews
   26th December 2017
 
-  Script to unooad specific data to be loaded into new price data.
+  Script to unload specific data to be loaded into new price data.
 
 */
 
