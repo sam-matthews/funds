@@ -1,9 +1,0 @@
-/*
-    price.ind
-    create PK and indexes for price table.
-    Sam Matthews
-*/
-
-ALTER TABLE price ADD PRIMARY KEY(price_date, price_secu, price_type1)
-;
-
