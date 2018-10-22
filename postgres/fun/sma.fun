@@ -1,6 +1,6 @@
 /*
 
-  sma.sql
+  sma.fun
   Sam Matthews
   10 October 2018
 
@@ -45,22 +45,6 @@ BEGIN
       ) sma
       GROUP BY sma.p_fund;
 
-      /*raise notice 'FUND: %', ref.a_fund;
-      raise notice 'Analytic: %', ref.a_type;
-      raise notice 'Analytic Level: %', ref.myLevel1;
-      raise notice 'SMA Moving average: %', mySMA;
-      raise notice '====================================';
-*/
-      /*
-        Send output to analytic_rep
-
-        r_date      DATE
-        r_fund      CHAR(10)
-        r_analytic  CHAR(10)
-        r_level1    CHAR(3)
-        r_value     REAL
-
-      */
 
       INSERT INTO analytic_rep(r_date,r_fund,r_analytic,r_level1,r_value)
       VALUES (current_date, ref.a_fund,ref.a_type,ref.myLevel1,mySMA);
