@@ -1,0 +1,32 @@
+/*
+  analytic_rep.tab
+
+  Sam Matthews
+  22nd October 2018
+
+  Description:
+  Create table to hold analytic data. Typically the columns will be:
+
+  r_date      DATE
+  r_fund      CHAR(10)
+  r_analytic  CHAR(10)
+  r_level1    CHAR(3)
+  r_level2    CHAR(3)
+  r_level3    CHAR(3)
+  r_value     REAL // This is the value for the given analytic.
+*/
+
+DROP TABLE analytic_rep;
+
+CREATE TABLE analytic_rep(
+  r_date      DATE,
+  r_fund      CHAR(10),
+  r_analytic  CHAR(10),
+  r_level1    CHAR(3),
+  r_level2    CHAR(3),
+  r_level3    CHAR(3),
+  r_value     REAL
+);
+
+
+
