@@ -6,3 +6,4 @@ CREATE TABLE EOM_Generation(
   e_price REAL,
   e_diff  REAL)
 ;
+
