@@ -34,7 +34,8 @@ BEGIN
       WHERE p_fund = ref.p_fund
       ORDER BY 1
       LOOP
-        INSERT INTO eom_generation(e_date, e_fund, e_price) VALUES (ref_b.month, ref_b.p_fund, ref_b.p_price);
+        INSERT INTO eom_generation(e_date, e_fund, e_price)
+        VALUES (ref_b.month, ref_b.p_fund, ref_b.p_price);
       END LOOP;
     END LOOP;
 

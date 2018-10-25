@@ -4,6 +4,7 @@ CREATE TABLE EOM_Generation(
   e_date  DATE,
   e_fund  CHAR(10),
   e_price REAL,
-  e_diff  REAL)
+  e_diff  REAL,
+  e_sma   REAL)
 ;
 
