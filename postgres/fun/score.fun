@@ -33,7 +33,7 @@ DECLARE
 BEGIN
 
   FOR ref_a IN
-  SELECT DISTINCT r_fund FROM analytic_rep ORDER BY r_fund
+    SELECT DISTINCT r_fund FROM analytic_rep ORDER BY r_fund
   LOOP
 
     -- initialize some variables
@@ -50,6 +50,7 @@ BEGIN
     WHERE 1=1
       AND r_fund = ref_a.r_fund
       AND r_analytic = 'SMA'
+      AND r_date = current_date
     ORDER BY CAST(r_level1 AS INT) DESC
     LOOP
 
@@ -80,7 +81,7 @@ BEGIN
 
     raise notice 'Fund: %', ref_a.r_fund;
     raise notice 'Score: %', score;
-    raise notice '=================================';
+    -- raise notice '=================================';
   END LOOP;
 END;
 $$ LANGUAGE plpgsql;

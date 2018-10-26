@@ -24,9 +24,14 @@ BEGIN
 
   FOR ref IN
 
-    SELECT DISTINCT p_fund, count(*) FROM price_new GROUP BY p_fund HAVING count(*) > 100 ORDER BY 1
+    SELECT DISTINCT p_fund, count(*)
+    FROM price_new
+    GROUP BY p_fund
+    HAVING count(*) > 100
+    ORDER BY 1
     LOOP
-      FOR ref_b IN SELECT DISTINCT ON (date_trunc('MONTH', p_date))
+      FOR ref_b IN
+        SELECT DISTINCT ON (date_trunc('MONTH', p_date))
           date_trunc('MONTH', p_date) AS MONTH,
           p_fund,
           p_price
@@ -34,6 +39,7 @@ BEGIN
       WHERE p_fund = ref.p_fund
       ORDER BY 1
       LOOP
+        raise notice 'Inserting record - ';
         INSERT INTO eom_generation(e_date, e_fund, e_price)
         VALUES (ref_b.month, ref_b.p_fund, ref_b.p_price);
       END LOOP;
