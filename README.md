@@ -61,6 +61,16 @@ Run the following to verify data has been populated correctly.
  2018-05-01 | AIF_CI     |   1.5206 |    0.0410077 |    0.0119828
  2018-06-01 | AIF_CI     |   1.5233 |   0.00177567 |    0.0110548
 
+#
+# Add current price data to EOM data.
+#
+
+For example, currently we are in October. The EOM price information for October is actually from the 1st October not the
+20th October. This month there is quite a difference and therefore the decision making may end up being just that little bit different.
+
+To rectify this problem, I will create a function which scans through all of the funds in the EOM summary table, and then update the price information for that fund.
+
+
 
 
 
