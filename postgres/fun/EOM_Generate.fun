@@ -5,6 +5,8 @@
   24 October 2018
 
   Function to generate EOM Data for all funds which have more than 100 days of data (3 months)
+   - Generate month end data for all funds which have more than 100 daily data points.
+
   Output --> EOM_Generation
   Input <-- price_new
 
@@ -21,6 +23,11 @@ DECLARE
   ref_b RECORD;
 
 BEGIN
+
+  RAISE NOTICE 'Populating month end price information.';
+
+  -- We need to remove all data from this table, because this function will re-populate everything from price_new
+  TRUNCATE TABLE eom_generation;
 
   FOR ref IN
 
@@ -39,9 +46,10 @@ BEGIN
       WHERE p_fund = ref.p_fund
       ORDER BY 1
       LOOP
-        raise notice 'Inserting record - ';
+
         INSERT INTO eom_generation(e_date, e_fund, e_price)
         VALUES (ref_b.month, ref_b.p_fund, ref_b.p_price);
+
       END LOOP;
     END LOOP;
 

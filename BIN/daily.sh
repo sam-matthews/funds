@@ -9,5 +9,5 @@
 
 #
 
-${HOME}/Code/funds/postgres/load/load-all-data.sh
-${HOME}/Code/funds/BIN/load-analytic.sh
+${HOME}/Code/funds/postgres/load/load-postgres.sh
+

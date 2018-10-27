@@ -28,6 +28,8 @@ DECLARE
 
 BEGIN
 
+  RAISE NOTICE 'Running difference calculations between each month.';
+
   FOR ref_a IN
     SELECT DISTINCT e_fund e_fund FROM EOM_Generation ORDER BY e_fund
   LOOP
@@ -67,12 +69,8 @@ BEGIN
 
       END IF;
 
-      -- raise notice '----------------------------------';
     END LOOP;
 
-    -- raise notice 'Fund: %', ref_a.r_fund;
-    -- raise notice 'Score: %', score;
-    -- raise notice '=================================';
   END LOOP;
 END;
 $$ LANGUAGE plpgsql;

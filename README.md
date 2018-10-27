@@ -13,6 +13,7 @@ load-postgres.sql
 psql
 > SELECT FROM sma();
 `
+
 # Loading End of Month summarised Data.
 
 ## Install

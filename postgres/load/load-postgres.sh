@@ -50,6 +50,7 @@ psql << EOF
     ;
 
   -- Delete rows where p_price IS NULL. This will remove any blank rows which get imported.
+
   DELETE FROM price_new WHERE p_price IS NULL;
 
   COPY (
@@ -59,6 +60,11 @@ psql << EOF
       p_price
     FROM price_new ORDER BY p_date)
     TO '$UNLOADHOME/FULL-${CURR_DATE}-PRICE.csv' DELIMITER ',' CSV HEADER;
+
+  -- Generate SMA Data
+  SELECT FROM sma();
+
+
 
 EOF
 

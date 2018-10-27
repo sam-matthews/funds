@@ -28,6 +28,8 @@ DECLARE
 
 
 BEGIN
+  RAISE NOTICE 'Gathering analytical data over month end price information.';
+
   -- We start by genresating a list of all funds.
 
   FOR ref_a IN
@@ -36,20 +38,15 @@ BEGIN
     -- initialize some variables for each fund.
     myCounter := 0;
 
-    raise notice 'Fund: %', ref_a.e_fund;
-
     FOR ref_b IN
       SELECT * FROM EOM_Generation
       WHERE 1=1
         AND e_fund = ref_a.e_fund
       ORDER BY e_date
+
     LOOP
       -- initialize some variables for each fund.
       IF myCounter > 1 THEN
-        raise notice 'Date: %', ref_b.e_date;
-        raise notice 'Fund: %', ref_b.e_fund;
-        raise notice 'Price: %', ref_b.e_price;
-        raise notice 'Diff: %', ref_b.e_diff;
 
         SELECT AVG(sma.e_diff) sma_diff INTO mySMA
         FROM
