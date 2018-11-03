@@ -32,9 +32,13 @@ DECLARE
 
 BEGIN
 
+  RAISE NOTICE 'Starting score routine';
+
   FOR ref_a IN
-    SELECT DISTINCT r_fund FROM analytic_rep ORDER BY r_fund
+    SELECT DISTINCT p_fund FROM portfolio_price_history ORDER BY p_fund
   LOOP
+
+    RAISE NOTICE 'Fund: %', ref_a.p_fund;
 
     -- initialize some variables
     score         := 0;
@@ -45,13 +49,13 @@ BEGIN
 
     FOR ref_b IN
 
-    SELECT *
-    FROM analytic_rep
-    WHERE 1=1
-      AND r_fund = ref_a.r_fund
-      AND r_analytic = 'SMA'
-      AND r_date = current_date
-    ORDER BY CAST(r_level1 AS INT) DESC
+      SELECT *
+      FROM analytic_rep
+      WHERE 1=1
+        AND r_fund = ref_a.p_fund
+        AND r_analytic = 'SMA'
+        AND r_date = (SELECT r_date FROM analytic_rep WHERE r_fund = ref_a.p_fund ORDER BY r_date DESC LIMIT 1)
+      ORDER BY CAST(r_level1 AS INT) DESC
     LOOP
 
       loop_counter := loop_counter + 1;
@@ -71,17 +75,21 @@ BEGIN
 
       END IF;
 
-      /*raise notice 'Fund: %', ref_b.r_fund;
-      raise notice 'SMA Level: %', ref_b.r_level1;
-      raise notice 'start_sma: %', start_sma;
-      raise notice 'stop_sma: %', stop_sma;
-      raise notice 'Score: %', score;
-      raise notice '----------------------------------';*/
+
+
     END LOOP;
 
-    raise notice 'Fund: %', ref_a.r_fund;
-    raise notice 'Score: %', score;
-    -- raise notice '=================================';
+    --
+
+    UPDATE portfolio_price_history SET p_score = score
+    WHERE 1=1
+      AND p_date =
+      (
+        SELECT p_date FROM portfolio_price_history
+        WHERE p_fund = ref_a.p_fund ORDER BY p_date DESC LIMIT 1
+      )
+      AND p_fund = ref_a.p_fund;
+
   END LOOP;
 END;
 $$ LANGUAGE plpgsql;

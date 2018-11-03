@@ -1,8 +1,18 @@
+/*
+
+  portfolio.tab
+  Sam Matthews
+  27th October 2018
+
+  Hold information relating to the portfolios.
+
+*/
+
+
+
 DROP TABLE PORTFOLIO;
 
 CREATE TABLE PORTFOLIO(
-  p_date DATE,
   p_portfolio CHAR(10),
-  p_fund CHAR(10),
-  p_value REAL)
-;
+  p_description CHAR(2000)
+);
