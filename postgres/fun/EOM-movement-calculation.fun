@@ -65,7 +65,11 @@ BEGIN
         -- raise notice 'Diff: %', diff_calc;
 
 
-        UPDATE EOM_Generation SET e_diff = diff_calc WHERE e_date = ref_b.e_date AND e_fund = ref_b.e_fund;
+        UPDATE EOM_Generation
+        SET e_diff = diff_calc
+        WHERE 1=1
+          AND e_date = ref_b.e_date
+          AND e_fund = ref_b.e_fund;
 
       END IF;
 

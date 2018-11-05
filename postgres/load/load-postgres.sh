@@ -61,7 +61,8 @@ psql << EOF
     FROM price_new ORDER BY p_date)
     TO '$UNLOADHOME/FULL-${CURR_DATE}-PRICE.csv' DELIMITER ',' CSV HEADER;
 
-  -- Generate SMA Data
+  -- Generate SMA Data. This adds SMA data into the analytic_rep table.
+
   SELECT FROM sma();
 
 

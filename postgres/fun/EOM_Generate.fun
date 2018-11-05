@@ -6,6 +6,8 @@
 
   Function to generate EOM Data for all funds which have more than 100 days of data (3 months)
    - Generate month end data for all funds which have more than 100 daily data points.
+   - Add data for additional month. This is the month which will get updated later by another peice of code.
+   - Update cursor name ref --> ref_a
 
   Output --> EOM_Generation
   Input <-- price_new
@@ -19,7 +21,7 @@
 CREATE OR REPLACE FUNCTION EOM_Generation() RETURNS VOID AS $$
 
 DECLARE
-  ref   RECORD;
+  ref_a RECORD;
   ref_b RECORD;
 
 BEGIN
@@ -29,7 +31,7 @@ BEGIN
   -- We need to remove all data from this table, because this function will re-populate everything from price_new
   TRUNCATE TABLE eom_generation;
 
-  FOR ref IN
+  FOR ref_a IN
 
     SELECT DISTINCT p_fund, count(*)
     FROM price_new
@@ -37,20 +39,34 @@ BEGIN
     HAVING count(*) > 100
     ORDER BY 1
     LOOP
+
       FOR ref_b IN
+
         SELECT DISTINCT ON (date_trunc('MONTH', p_date))
           date_trunc('MONTH', p_date) AS MONTH,
           p_fund,
           p_price
-      FROM price_new
-      WHERE p_fund = ref.p_fund
-      ORDER BY 1
+        FROM price_new
+        WHERE p_fund = ref_a.p_fund
+        UNION ALL
+        SELECT
+          DATE_TRUNC('month', MAX(p_date) + INTERVAL '1 MONTH'),
+          p_fund,
+          p_price
+        FROM price_new
+        WHERE p_fund = ref_a.p_fund AND p_date = (SELECT MAX(p_date) FROM price_new WHERE p_fund = ref_a.p_fund)
+        GROUP BY p_fund, p_price
+
       LOOP
 
         INSERT INTO eom_generation(e_date, e_fund, e_price)
         VALUES (ref_b.month, ref_b.p_fund, ref_b.p_price);
 
       END LOOP;
+
+      -- INSERT additional month.
+
+
     END LOOP;
 
 END;
