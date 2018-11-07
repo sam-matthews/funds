@@ -20,9 +20,9 @@ DROP FUNCTION sma();
 CREATE OR REPLACE FUNCTION sma() RETURNS VOID AS $$
 
 DECLARE
-  ref   RECORD;
-  mySMA REAL;
-
+  ref             RECORD;
+  mySMA           REAL;
+  duplicate_entry INTEGER;
 
 BEGIN
 
@@ -35,6 +35,7 @@ BEGIN
       AND a_type = 'SMA'
     LOOP
 
+      -- SELECT simple moving average for each SMA Level
       SELECT AVG(sma.p_price) sma_value INTO mySMA
       FROM
       (
@@ -46,8 +47,17 @@ BEGIN
       GROUP BY sma.p_fund;
 
 
-      INSERT INTO analytic_rep(r_date,r_fund,r_analytic,r_level1,r_value)
-      VALUES (current_date, ref.a_fund,ref.a_type,ref.myLevel1,mySMA);
+      -- Check if this script has already been run today.
+
+      SELECT COUNT(*) INTO duplicate_entry
+      FROM analytic_rep WHERE r_date = current_date;
+
+      IF duplicate_entry = 0 THEN
+
+        INSERT INTO analytic_rep(r_date,r_fund,r_analytic,r_level1,r_value)
+        VALUES (current_date, ref.a_fund,ref.a_type,ref.myLevel1,mySMA);
+
+      END IF;
 
     END LOOP;
 
