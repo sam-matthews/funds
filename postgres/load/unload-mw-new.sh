@@ -1,11 +1,11 @@
 #!/bin/bash
 
 APPNAME="funds"
-APPHOME="${HOME}/source/${APPNAME}"
+APPHOME="${HOME}/Code/${APPNAME}"
 DBHOME="${APPHOME}/postgres"
 CFGHOME="${DBHOME}/cfg"
 
-DATAHOME=${HOME}/DATA/${APPNAME}
+DATAHOME=${HOME}/Documents/DATA/${APPNAME}
 UNLOADHOME="${DATAHOME}/unload"
 LOADHOME="${DATAHOME}/load"
 

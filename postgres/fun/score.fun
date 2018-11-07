@@ -79,9 +79,10 @@ BEGIN
 
     END LOOP;
 
-    --
+    -- Update the score for the most recent record for the given fund
 
-    UPDATE portfolio_price_history SET p_score = score
+    UPDATE portfolio_price_history
+    SET p_score = score
     WHERE 1=1
       AND p_date =
       (
