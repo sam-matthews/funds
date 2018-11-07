@@ -10,4 +10,6 @@
 #
 
 ${HOME}/Code/funds/postgres/load/load-postgres.sh
+${HOME}/Code/funds/postgres/load/unload-mw-new.sh
+
 
