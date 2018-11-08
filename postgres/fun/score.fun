@@ -38,7 +38,7 @@ BEGIN
     SELECT DISTINCT p_fund FROM portfolio_price_history ORDER BY p_fund
   LOOP
 
-    RAISE NOTICE 'Fund: %', ref_a.p_fund;
+    -- RAISE NOTICE 'Fund: %', ref_a.p_fund;
 
     -- initialize some variables
     score         := 0;
