@@ -5,9 +5,12 @@ DECLARE
   ref_b   RECORD;
   total   REAL;
 
+  sma_floor NUMERIC := 0.0025;
+
 BEGIN
 
-  RAISE NOTICE 'Loading portfolio fund data.';
+  RAISE NOTICE 'pop_portfolio_month()';
+
   FOR ref_a IN
     -- Generate list of portfolios.
     SELECT DISTINCT portfolio FROM portfolio_fund
@@ -26,7 +29,7 @@ BEGIN
         JOIN portfolio_fund p ON e.e_fund = p.fund
         WHERE 1=1
           AND p.portfolio = ref_a.portfolio
-          AND e_sma > 0.005
+          AND e_sma > sma_floor
           AND e_date = (SELECT e_date FROM eom_generation ORDER BY e_date DESC LIMIT 1)
       )
       AND e_date = (SELECT e_date FROM eom_generation ORDER BY e_date DESC LIMIT 1);
@@ -51,7 +54,7 @@ BEGIN
           JOIN portfolio_fund p ON e.e_fund = p.fund
           WHERE 1=1
             AND p.portfolio = ref_a.portfolio
-            AND e_sma > 0.005
+            AND e_sma > sma_floor
             AND e_date = (SELECT e_date FROM eom_generation ORDER BY e_date DESC LIMIT 1)
         )
         AND e_date = (SELECT e_date FROM eom_generation ORDER BY e_date DESC LIMIT 1)
@@ -59,6 +62,7 @@ BEGIN
     LOOP
 
       -- Calculate percent
+      -- Delete current record if it currently exists.
 
       DELETE FROM portfolio_price_history
       WHERE 1=1
@@ -86,9 +90,9 @@ BEGIN
         (ref_b.e_sma/total)
       );
 
-      RAISE NOTICE 'Portfolio: %', ref_a.portfolio;
-      RAISE NOTICE 'Fund: %', ref_b.e_fund;
-      RAISE NOTICE 'Percent: %', ref_b.e_sma/total;
+      -- RAISE NOTICE 'Portfolio: %', ref_a.portfolio;
+      -- RAISE NOTICE 'Fund: %', ref_b.e_fund;
+      -- RAISE NOTICE 'Percent: %', ref_b.e_sma/total;
 
     END LOOP;
 
