@@ -50,7 +50,14 @@ BEGIN
       -- Check if this script has already been run today.
 
       SELECT COUNT(*) INTO duplicate_entry
-      FROM analytic_rep WHERE r_date = current_date;
+      FROM analytic_rep
+      WHERE 1=1
+        AND r_date = current_date
+        AND r_fund = ref.a_fund
+        AND r_analytic = ref.a_type
+        AND CAST(r_level1 AS INT) = ref.myLevel1
+        AND r_value = mySMA
+      ;
 
       IF duplicate_entry = 0 THEN
 
