@@ -1,15 +1,20 @@
 #!/bin/bash
 
+# Assumptions:
+# File been loaded is always FULL-PRICE-DB-LOAD.csv
+
 APPNAME="funds"
 APPHOME="${HOME}/source/${APPNAME}"
 DBHOME="${APPHOME}/postgres"
 CFGHOME="${DBHOME}/cfg"
 
-DATAHOME=${HOME}/DATA/${APPNAME}
+DATAHOME=${HOME}/Documents/DATA/${APPNAME}
 UNLOADHOME="${DATAHOME}/unload"
 LOADHOME="${DATAHOME}/load"
 
-CSVLOADFILE="${UNLOADHOME}/FULL-2017-12-13-PRICE.csv"
+CSVFILE="FULL-PRICE-DB-LOAD.csv"
+
+CSVLOADFILE="${UNLOADHOME}/${CSVFILE}
 echo "${CSVLOADFILE}"
 
 psql << EOF

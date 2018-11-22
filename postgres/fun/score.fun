@@ -54,7 +54,11 @@ BEGIN
       WHERE 1=1
         AND r_fund = ref_a.p_fund
         AND r_analytic = 'SMA'
-        AND r_date = (SELECT r_date FROM analytic_rep WHERE r_fund = ref_a.p_fund ORDER BY r_date DESC LIMIT 1)
+        AND r_date = (
+          SELECT r_date
+          FROM analytic_rep
+          WHERE r_fund = ref_a.p_fund
+          ORDER BY r_date DESC LIMIT 1)
       ORDER BY CAST(r_level1 AS INT) DESC
     LOOP
 
