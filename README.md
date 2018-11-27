@@ -1,6 +1,9 @@
 # funds
 Postgres and Bash Application to manage funds, prices, portfolios and analysis.
 
+
+Soon to include python.
+
 # Daily loads
 
 The following steps should be run each day.
