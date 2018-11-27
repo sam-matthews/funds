@@ -9,7 +9,7 @@
 
 #
 
-unzip -o ${HOME}/Code/funds/price-diff.zip -d ${HOME}/Documents/DATA/funds/unload/price-diff
+unzip -o ${HOME}/Code/funds/price-diff.zip -d ${HOME}/Documents/DATA/funds/load/price-diff
 ${HOME}/Code/funds/postgres/load/load-postgres.sh
 ${HOME}/Code/funds/postgres/load/unload-mw-new.sh
 

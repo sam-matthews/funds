@@ -12,11 +12,12 @@ APPHOME="${HOME}/Documents/CODE/${APPNAME}"
 DBHOME="${APPHOME}/postgres"
 CFGHOME="${DBHOME}/cfg"
 
-DATAHOME=${HOME}/DOCUMENTS/DATA/${APPNAME}
+DATAHOME=${HOME}/Documents/DATA/${APPNAME}
 UNLOADHOME="${DATAHOME}/unload"
 LOADHOME="${DATAHOME}/load"
 
 CSVLOADFILE="${LOADHOME}/price-diff/price-diff-s_price.csv"
+echo "CSVLOADFILE=${CSVLOADFILE}"
 
 CURR_DATE=`date "+%Y-%m-%d"`
 
