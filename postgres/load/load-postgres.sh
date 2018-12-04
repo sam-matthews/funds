@@ -6,22 +6,28 @@
 # Add Funds to a lookup table, then scan through this table instead of looking through an external file.
 # Added release tag 0.1
 
-
+CSV_FILE=$1
 APPNAME="funds"
-APPHOME="${HOME}/Documents/CODE/${APPNAME}"
+APPHOME="${HOME}/Code/${APPNAME}"
 DBHOME="${APPHOME}/postgres"
 CFGHOME="${DBHOME}/cfg"
 
-DATAHOME=${HOME}/Documents/DATA/${APPNAME}
+DATAHOME=${HOME}/Data/${APPNAME}
 UNLOADHOME="${DATAHOME}/unload"
 LOADHOME="${DATAHOME}/load"
 
-CSVLOADFILE="${LOADHOME}/price-diff/price-diff-s_price.csv"
+if [ ! -z $CSV_FILE ]
+then
+  CSVLOADFILE="${CSV_FILE}"
+else
+  CSVLOADFILE="${LOADHOME}/price-diff/price-diff-s_price.csv"
+fi
+
 echo "CSVLOADFILE=${CSVLOADFILE}"
 
 CURR_DATE=`date "+%Y-%m-%d"`
 
-psql << EOF
+psql -d funds << EOF
 
   DELETE FROM s_price;
 
