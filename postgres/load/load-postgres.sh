@@ -27,7 +27,7 @@ echo "CSVLOADFILE=${CSVLOADFILE}"
 
 CURR_DATE=`date "+%Y-%m-%d"`
 
-psql -d funds << EOF
+psql << EOF
 
   DELETE FROM s_price;
 
