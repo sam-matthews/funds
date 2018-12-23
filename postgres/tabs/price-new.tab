@@ -1,6 +1,10 @@
-DROP TABLE price_new;
+-- price-new.tab
+-- Sam Matthews
+-- price_new is my transaction table. This is where all daily fund price data goes.
 
-CREATE TABLE price_new(
+\! echo "======================="
+\! echo "Create Table: price_new"
+CREATE TABLE IF NOT EXISTS price_new(
   p_date DATE,
   p_fund CHAR(10),
   p_price REAL)

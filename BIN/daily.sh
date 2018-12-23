@@ -7,10 +7,19 @@
 #
 #  Run daily scripts (after CSV for daily data has been loaded.
 
+
 #
 
-unzip -o ${HOME}/Code/funds/price-diff.zip -d ${HOME}/Data/funds/load/price-diff
+DATA_LOAD_HOME="$HOME/Data/funds/load/price-diff"
+
+if [[ ! -d ${DATA_LOAD_HOME} ]]
+then 
+  echo "Creating directory: mkdir -p ${DATA_LOAD_HOME}"
+  mkdir -p ${DATA_LOAD_HOME}
+fi
+
+unzip -o ${HOME}/Code/funds/price-diff.zip -d ${DATA_LOAD_HOME}
 ${HOME}/Code/funds/postgres/load/load-postgres.sh
-${HOME}/Code/funds/postgres/load/unload-mw-new.sh
+# ${HOME}/Code/funds/postgres/load/unload-mw-new.sh
 
 

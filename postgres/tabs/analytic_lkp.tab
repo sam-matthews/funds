@@ -1,4 +1,8 @@
 /*
+  analytical_lkp.tab
+  Sam Matthews
+
+
   Used to store analytic level details.
   We need fund, analytic_type, analytic_level1 .. analytic_level3.
 
@@ -11,11 +15,10 @@
   alevel3 CHAR(3)
 */
 
+\! echo "======================="
+\! echo "Create Table: analytic_lkp"
 
-
-DROP TABLE analytic_lkp;
-
-CREATE TABLE analytic_lkp(
+CREATE TABLE IF NOT EXISTS analytic_lkp(
   a_fund CHAR(10),
   a_type CHAR(10),
   a_level1 CHAR(3),
