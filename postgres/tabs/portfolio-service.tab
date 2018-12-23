@@ -1,0 +1,19 @@
+/*
+
+  portfolio.tab
+  Sam Matthews
+  27th October 2018
+
+  Hold information relating to the portfolios.
+
+*/
+
+
+
+DROP TABLE portfolio_service;
+
+CREATE TABLE portfolio_service(
+  ps_portfolio    CHAR(10),
+  ps_service      CHAR(10),
+  ps_description  CHAR(2000)
+);

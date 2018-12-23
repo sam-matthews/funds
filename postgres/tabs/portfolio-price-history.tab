@@ -1,0 +1,34 @@
+/*
+
+  portfolio-price-history.tab
+
+  Sam Matthews
+  28th October 2018
+
+  Description:
+
+  Table to hold historic details for the following information.
+
+  date
+  portfolio
+  fund
+  sma
+  score
+  total
+
+
+*/
+
+DROP TABLE portfolio_price_history;
+
+CREATE TABLE portfolio_price_history(
+  p_date      DATE,
+  p_portfolio CHAR(10),
+  p_service   CHAR(15),
+  p_fund      CHAR(10),
+  p_sma       REAL,
+  p_perc      REAL,
+  p_score     INT,
+  p_total     REAL
+);
+

@@ -1,0 +1,26 @@
+/*
+  Used to store analytic level details.
+  We need fund, analytic_type, analytic_level1 .. analytic_level3.
+
+  Columns will therefore look like:
+
+  fund CHAR(10)
+  a_type CHAR(10), -- For Example SMA
+  alevel1 CHAR(3), -- This will differ depending on the analytic type chosen.
+  alevel2 CHAR(3)
+  alevel3 CHAR(3)
+*/
+
+
+
+DROP TABLE analytic_lkp;
+
+CREATE TABLE analytic_lkp(
+  a_fund CHAR(10),
+  a_type CHAR(10),
+  a_level1 CHAR(3),
+  a_level2 CHAR(3),
+  a_level3 CHAR(3)
+);
+
+

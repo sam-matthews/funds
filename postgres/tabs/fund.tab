@@ -1,0 +1,19 @@
+/*
+
+  fund.tab
+  Sam Matthews
+  27th October 2018
+
+  Hold information relating to the portfolios.
+
+*/
+
+
+
+DROP TABLE fund;
+
+CREATE TABLE fund(
+  f_fund CHAR(10),
+  f_description CHAR(2000),
+  f_owner CHAR(20)
+);

@@ -6,17 +6,24 @@
 # Add Funds to a lookup table, then scan through this table instead of looking through an external file.
 # Added release tag 0.1
 
-
+CSV_FILE=$1
 APPNAME="funds"
-APPHOME="${HOME}/Documents/CODE/${APPNAME}"
+APPHOME="${HOME}/Code/${APPNAME}"
 DBHOME="${APPHOME}/postgres"
 CFGHOME="${DBHOME}/cfg"
 
-DATAHOME=${HOME}/DOCUMENTS/DATA/${APPNAME}
+DATAHOME=${HOME}/Data/${APPNAME}
 UNLOADHOME="${DATAHOME}/unload"
 LOADHOME="${DATAHOME}/load"
 
-CSVLOADFILE="${LOADHOME}/price-diff/price-diff-s_price.csv"
+if [ ! -z $CSV_FILE ]
+then
+  CSVLOADFILE="${CSV_FILE}"
+else
+  CSVLOADFILE="${LOADHOME}/price-diff/price-diff-s_price.csv"
+fi
+
+echo "CSVLOADFILE=${CSVLOADFILE}"
 
 CURR_DATE=`date "+%Y-%m-%d"`
 
@@ -50,6 +57,7 @@ psql << EOF
     ;
 
   -- Delete rows where p_price IS NULL. This will remove any blank rows which get imported.
+
   DELETE FROM price_new WHERE p_price IS NULL;
 
   COPY (
@@ -59,6 +67,12 @@ psql << EOF
       p_price
     FROM price_new ORDER BY p_date)
     TO '$UNLOADHOME/FULL-${CURR_DATE}-PRICE.csv' DELIMITER ',' CSV HEADER;
+
+  -- Generate SMA Data. This adds SMA data into the analytic_rep table.
+
+  SELECT FROM sma();
+
+
 
 EOF
 

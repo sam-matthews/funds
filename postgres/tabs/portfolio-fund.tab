@@ -1,0 +1,16 @@
+/*
+
+  portfolio_fund.sql
+  Sam Matthews
+  27th October 2018
+
+*/
+
+DROP TABLE portfolio_fund;
+
+CREATE TABLE portfolio_fund(
+  portfolio CHAR(10),
+  fund      CHAR(10),
+  service   CHAR(15)
+);
+
