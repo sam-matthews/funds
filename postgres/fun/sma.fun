@@ -54,7 +54,6 @@ BEGIN
         AND r_fund = ref.a_fund
         AND r_analytic = ref.a_type
         AND CAST(r_level1 AS INT) = ref.myLevel1
-        AND r_value = mySMA
       ;
 
       IF duplicate_entry = 0 THEN
