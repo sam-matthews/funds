@@ -16,9 +16,11 @@
   r_value     REAL // This is the value for the given analytic.
 */
 
-DROP TABLE analytic_rep;
+\! echo "======================="
+\! echo "Create Table: analytic_rep"
 
-CREATE TABLE analytic_rep(
+CREATE TABLE IF NOT EXISTS analytic_rep 
+(
   r_date      DATE,
   r_fund      CHAR(10),
   r_analytic  CHAR(10),

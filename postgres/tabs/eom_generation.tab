@@ -1,0 +1,16 @@
+-- eom_generation.tab
+-- Sam Matthews
+
+-- Table used to hold monthly data nad related analytical data.
+
+\! echo "======================="
+\! echo "Create Table: eom_generation"
+
+CREATE TABLE IF NOT EXISTS eom_generation(
+  e_date  DATE,
+  e_fund  CHAR(10),
+  e_price REAL,
+  e_diff  REAL,
+  e_sma   REAL)
+;
+

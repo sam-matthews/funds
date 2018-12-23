@@ -13,8 +13,6 @@
 
 */
 
-DROP FUNCTION load_sma_fund_data();
-
 CREATE OR REPLACE FUNCTION load_sma_fund_data() RETURNS VOID AS $$
 DECLARE
   ref   RECORD;
