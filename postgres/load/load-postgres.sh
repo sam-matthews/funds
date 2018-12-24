@@ -31,13 +31,9 @@ psql << EOF
 
   DELETE FROM s_price;
 
-  COPY s_price(
-    sp_date,
-    sp_fund,
-    sp_price)
-    FROM '$CSVLOADFILE' DELIMITER ',' CSV HEADER;
+  \COPY s_price FROM ${CSVLOADFILE} DELIMITER ',' CSV HEADER
 
-    INSERT INTO price_new(
+  INSERT INTO price_new(
       p_date,
       p_fund,
       p_price)
@@ -60,13 +56,8 @@ psql << EOF
 
   DELETE FROM price_new WHERE p_price IS NULL;
 
-  COPY (
-    SELECT
-      p_date,
-      p_fund,
-      p_price
-    FROM price_new ORDER BY p_date)
-    TO '$UNLOADHOME/FULL-${CURR_DATE}-PRICE.csv' DELIMITER ',' CSV HEADER;
+  
+  \COPY price_new TO $HOME/price_new-${CURR_DATE}.csv DELIMITER ',' CSV HEADER;
 
   -- Generate SMA Data. This adds SMA data into the analytic_rep table.
 
@@ -75,7 +66,7 @@ psql << EOF
 
 
 EOF
-
+exit 0
 # remove data files older than 10 days.
 
 # Deleting files older than 10 days.
