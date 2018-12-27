@@ -49,6 +49,12 @@ echo '========================='
 echo 'Create Function: score()'
 psql  -f ${HOME}/Code/funds/postgres/fun/score.fun
 
+echo '========================='
+echo 'Load Data: load_sma_fund_data()'
+psql  -f ${HOME}/Code/funds/postgres/sql/load-analytic_lkp.sql
+
+
+
 
 
 
