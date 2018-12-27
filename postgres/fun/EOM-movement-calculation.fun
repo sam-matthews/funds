@@ -13,8 +13,6 @@
 
 */
 
-DROP FUNCTION calcEOMMovement();
-
 CREATE OR REPLACE FUNCTION calcEOMMovement() RETURNS VOID AS $$
 
 DECLARE

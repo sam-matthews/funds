@@ -30,5 +30,3 @@ CREATE TABLE IF NOT EXISTS analytic_rep
   r_value     REAL
 );
 
-
-
