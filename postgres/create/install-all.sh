@@ -89,4 +89,12 @@ echo '========================='
 echo 'Load Data: Load SMA Data into analytic_rep'
 psql  -f ${HOME}/Code/funds/postgres/sql/load-study-sma.sql
 
+# Load fund and portfolio data intoportfolio_fund table.
+
+echo '========================='
+echo 'Load Data: Portfolio_Fund'
+psql  -f ${HOME}/Code/funds/postgres/sql/insert-portfolio-fund.sql
+
+
+
 
