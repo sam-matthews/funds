@@ -9,7 +9,7 @@
 
 CREATE TABLE IF NOT EXISTS r_service_portfolio
 (
-  service_name CHAR(10),
-  portfolio_name CHAR(10),
+  service_name CHAR(20),
+  portfolio_name CHAR(20),
   service_portfolio_comments CHAR(200)
 );

@@ -9,6 +9,6 @@
 
 CREATE TABLE IF NOT EXISTS r_portfolio
 (
-  portfolio_name CHAR(10),
+  portfolio_name CHAR(20),
   portfolio_comments CHAR(200)
 );

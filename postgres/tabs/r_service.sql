@@ -9,6 +9,6 @@
 
 CREATE TABLE IF NOT EXISTS r_service
 (
-  service_name CHAR(10),
+  service_name CHAR(20),
   service_comments CHAR(200)
 );

@@ -10,6 +10,6 @@
 CREATE TABLE IF NOT EXISTS r_fund_service
 (
   fund_name CHAR(10),
-  service_name CHAR(10),
+  service_name CHAR(20),
   fund_service_comments CHAR(200)
 );
