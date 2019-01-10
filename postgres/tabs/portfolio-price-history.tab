@@ -19,9 +19,10 @@
 
 */
 
-DROP TABLE portfolio_price_history;
+\! echo "======================="
+\! echo "Create Table: portfolio_price_history"
 
-CREATE TABLE portfolio_price_history(
+CREATE TABLE IF NOT EXISTS portfolio_price_history(
   p_date      DATE,
   p_portfolio CHAR(10),
   p_service   CHAR(15),

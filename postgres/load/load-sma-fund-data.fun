@@ -13,40 +13,36 @@
 
 */
 
-DROP FUNCTION load_sma_fund_data();
-
 CREATE OR REPLACE FUNCTION load_sma_fund_data() RETURNS VOID AS $$
 DECLARE
   ref   RECORD;
 
 BEGIN
 
-  DELETE FROM analytic_lkp;
+  TRUNCATE TABLE analytic_lkp;
   FOR ref IN
 
-    SELECT DISTINCT p_fund FROM price_new WHERE p_price IS NOT NULL
+    SELECT DISTINCT fund_name FROM r_fund
     LOOP
 
       INSERT INTO analytic_lkp(a_fund, a_type, a_level1)
-      VALUES(ref.p_fund, 'SMA','6');
+      VALUES(ref.fund_name, 'SMA','6');
 
       INSERT INTO analytic_lkp(a_fund, a_type, a_level1)
-      VALUES(ref.p_fund, 'SMA','12');
+      VALUES(ref.fund_name, 'SMA','12');
 
       INSERT INTO analytic_lkp(a_fund, a_type, a_level1)
-      VALUES(ref.p_fund, 'SMA','25');
+      VALUES(ref.fund_name, 'SMA','25');
 
       INSERT INTO analytic_lkp(a_fund, a_type, a_level1)
-      VALUES(ref.p_fund, 'SMA','50');
+      VALUES(ref.fund_name, 'SMA','50');
 
       INSERT INTO analytic_lkp(a_fund, a_type, a_level1)
-      VALUES(ref.p_fund, 'SMA','100');
+      VALUES(ref.fund_name, 'SMA','100');
 
       INSERT INTO analytic_lkp(a_fund, a_type, a_level1)
-      VALUES(ref.p_fund, 'SMA','200');
+      VALUES(ref.fund_name, 'SMA','200');
 
-      raise notice '====================================';
-      raise notice 'Load SMA data for: %', ref.p_fund;
     END LOOP;
 
 END;

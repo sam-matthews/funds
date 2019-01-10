@@ -2,74 +2,45 @@
 
 # Assumptions:
 # File been loaded is always FULL-PRICE-DB-LOAD.csv
+# Update script for updated directory locations.
 
 APPNAME="funds"
-APPHOME="${HOME}/source/${APPNAME}"
+APPHOME="${HOME}/Code/${APPNAME}"
 DBHOME="${APPHOME}/postgres"
 CFGHOME="${DBHOME}/cfg"
 
-DATAHOME=${HOME}/Documents/DATA/${APPNAME}
+DATAHOME=${HOME}/Data/${APPNAME}
 UNLOADHOME="${DATAHOME}/unload"
 LOADHOME="${DATAHOME}/load"
 
 CSVFILE="FULL-PRICE-DB-LOAD.csv"
 
-CSVLOADFILE="${UNLOADHOME}/${CSVFILE}
+CSVLOADFILE="${LOADHOME}/${CSVFILE}"
 echo "${CSVLOADFILE}"
 
 psql << EOF
 
   TRUNCATE s_price;
-  TRUNCATE price;
+  TRUNCATE price_new;
 
-  COPY s_price(
-    s_price_date,
-    s_price_secu,
-    s_price_type1,
-    s_price_type2,
-    s_price_price)
-    FROM '${CSVLOADFILE}' DELIMITER ',' CSV HEADER;
+  \COPY s_price FROM ${CSVLOADFILE} DELIMITER ',' CSV HEADER
 
-    INSERT INTO price(
-      price_date,
-      price_secu,
-      price_type1,
-      price_type2,
-      price_price)
+  INSERT INTO price_new(
+      p_date,
+      p_fund,
+      p_price)
     SELECT
-      s_price_date,
-      s_price_secu,
-      s_price_type1,
-      s_price_type2,
-      s_price_price
+      sp_date,
+      sp_fund,
+      sp_price
     FROM
       s_price
     EXCEPT
     SELECT
-      price_date,
-      price_secu,
-      price_type1,
-      price_type2,
-      price_price
+      p_date,
+      p_fund,
+      p_price
     FROM
-      price
+      price_new
     ;
-
-  COPY (
-    SELECT
-      price_date,
-      price_secu,
-      price_type1,
-      price_type2,
-      price_price
-    FROM price ORDER BY price_date)
-    TO '$UNLOADHOME/FULL-${CURR_DATE}-PRICE.csv' DELIMITER ',' CSV HEADER;
 EOF
-
-# remove data files older than 10 days.
-
-# Deleting files older than 10 days.
-echo "Removing files older than 10 days."
-find ${UNLOADHOME} -name 'FULL-*-PRICE.csv' -mtime +10 -exec ls -l {} \;
-
-

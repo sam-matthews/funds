@@ -1,6 +1,10 @@
-DROP TABLE s_stock;
+-- s_stock.tab
+-- Sam Matthews
+-- Table to hold stock style information which can be exported into a format used by Motive Wave.
 
-CREATE TABLE s_stock(
+\! echo "======================="
+\! echo "Create Table: s_stock"
+CREATE TABLE IF NOT EXISTS s_stock(
   s_stock_date      DATE,
   s_stock_open      REAL,
   s_stock_high      REAL,
