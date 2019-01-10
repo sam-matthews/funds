@@ -7,9 +7,14 @@
 #
 #  Run daily scripts (after CSV for daily data has been loaded.
 
-# Removed unzip command. I'm moving away from storing binary files in my GIT project.
+DATA_LOAD_HOME="$HOME/Data/funds/load/price-diff"
 
--- unzip -o ${HOME}/Code/funds/price-diff.zip -d ${HOME}/Data/funds/load/price-diff
+if [[ ! -d ${DATA_LOAD_HOME} ]]
+then 
+  echo "Creating directory: mkdir -p ${DATA_LOAD_HOME}"
+  mkdir -p ${DATA_LOAD_HOME}
+fi
+
 ${HOME}/Code/funds/postgres/load/load-postgres.sh
 ${HOME}/Code/funds/postgres/load/unload-mw-new.sh
 
