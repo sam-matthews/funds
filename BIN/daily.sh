@@ -18,8 +18,7 @@ then
   mkdir -p ${DATA_LOAD_HOME}
 fi
 
-unzip -o ${HOME}/Code/funds/price-diff.zip -d ${DATA_LOAD_HOME}
 ${HOME}/Code/funds/postgres/load/load-postgres.sh
-# ${HOME}/Code/funds/postgres/load/unload-mw-new.sh
+${HOME}/Code/funds/postgres/load/unload-mw-new.sh
 
 

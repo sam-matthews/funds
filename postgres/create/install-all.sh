@@ -35,6 +35,11 @@ psql  -f ${HOME}/Code/funds/postgres/tabs/r_service_portfolio.sql
 
 
 # Create functions.
+
+echo '========================='
+echo 'Create Function: unload_stg_new.fun()'
+psql  -f ${HOME}/Code/funds/postgres/fun/unload-stg-new.fun
+
 echo '========================='
 echo 'Create Function: load_sma_fund_data()'
 psql  -f ${HOME}/Code/funds/postgres/load/load-sma-fund-data.fun

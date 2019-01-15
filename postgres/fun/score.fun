@@ -52,6 +52,7 @@ BEGIN
       WHERE 1=1
         AND r_fund = ref_a.p_fund
         AND r_analytic = 'SMA'
+        AND CAST(r_level1 AS INT) != 20
         AND r_date = (
           SELECT r_date
           FROM analytic_rep

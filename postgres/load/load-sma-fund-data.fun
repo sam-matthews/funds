@@ -43,6 +43,11 @@ BEGIN
       INSERT INTO analytic_lkp(a_fund, a_type, a_level1)
       VALUES(ref.fund_name, 'SMA','200');
 
+      -- Determine Bollinger Bands
+
+      INSERT INTO analytic_lkp(a_fund, a_type, a_level1)
+      VALUES(ref.fund_name, 'BOLLINGER','20');
+
     END LOOP;
 
 END;
