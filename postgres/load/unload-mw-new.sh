@@ -5,7 +5,7 @@ APPHOME="${HOME}/Code/${APPNAME}"
 DBHOME="${APPHOME}/postgres"
 CFGHOME="${DBHOME}/cfg"
 
-DATAHOME=${HOME}/Documents/DATA/${APPNAME}
+DATAHOME=${HOME}/Data/${APPNAME}
 UNLOADHOME="${DATAHOME}/unload"
 LOADHOME="${DATAHOME}/load"
 
@@ -17,19 +17,8 @@ do
 
     SELECT mw_new('$fund');
 
-    COPY (
-    SELECT
-      s_stock_date      date,
-      s_stock_open      open,
-      s_stock_high      high,
-      s_stock_low       low,
-      s_stock_close     "close",
-      s_stock_volume    volume,
-      s_stock_adj_close "adj close"
-    FROM s_stock ORDER BY s_stock_date)
-    TO '$UNLOADHOME/MW-20171209-$fund.csv' DELIMITER ',' CSV HEADER;
-
-    \q
+  \COPY s_stock TO '$UNLOADHOME/MW-20171209-$fund.csv' WITH (FORMAT CSV , HEADER);
+  -- \COPY s_stock TO '$HOME/MW-20171209-$fund.csv' WITH (FORMAT CSV , HEADER);
 
 EOF
 
