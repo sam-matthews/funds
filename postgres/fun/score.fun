@@ -78,8 +78,6 @@ BEGIN
 
       END IF;
 
-
-
     END LOOP;
 
     -- Update the score for the most recent record for the given fund
