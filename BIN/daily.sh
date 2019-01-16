@@ -7,9 +7,6 @@
 #
 #  Run daily scripts (after CSV for daily data has been loaded.
 
-
-#
-
 DATA_LOAD_HOME="$HOME/Data/funds/load/price-diff"
 
 if [[ ! -d ${DATA_LOAD_HOME} ]]

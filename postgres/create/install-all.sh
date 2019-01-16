@@ -74,16 +74,19 @@ psql  -f ${HOME}/Code/funds/postgres/fun/score.fun
 
 # Load Data.
 # Load reference data from CSV Data
+
 echo '========================='
 echo 'Load Reference Data'
-psql -f ${HOME}/Code/funds/postgres/load/load-reference.sql
+psql -f ${HOME}/Code/funds/postgres/create/install-reference.sql
 
 # Load Price Data
+
 echo '========================='
 echo 'Load Price Data: '
 ${HOME}/Code/funds/postgres/load/load-full-postgres.sh
 
 # Load data into analytic_lkp data.
+
 echo '========================='
 echo 'Load Data: load_sma_fund_data()'
 psql  -f ${HOME}/Code/funds/postgres/sql/load-analytic_lkp.sql
