@@ -17,8 +17,16 @@ do
 
     SELECT mw_new('$fund');
 
-  \COPY s_stock TO '$UNLOADHOME/MW-20171209-$fund.csv' WITH (FORMAT CSV , HEADER);
-  -- \COPY s_stock TO '$HOME/MW-20171209-$fund.csv' WITH (FORMAT CSV , HEADER);
+  \COPY (SELECT \
+	s_stock_date AS date, \
+	s_stock_open AS open, \
+	s_stock_high AS high, \
+	s_stock_low AS low, \
+	s_stock_close AS close, \
+	s_stock_volume AS volume,\
+	s_stock_adj_close AS adj_close\
+  FROM s_stock)\
+  TO '$UNLOADHOME/MW-20171209-$fund.csv' WITH (FORMAT CSV , HEADER);
 
 EOF
 
