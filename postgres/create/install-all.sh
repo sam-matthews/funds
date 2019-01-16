@@ -77,7 +77,7 @@ psql  -f ${HOME}/Code/funds/postgres/fun/score.fun
 
 echo '========================='
 echo 'Load Reference Data'
-psql -f ${HOME}/Code/funds/postgres/load/load-reference.sql
+psql -f ${HOME}/Code/funds/postgres/create/install-reference.sql
 
 # Load Price Data
 

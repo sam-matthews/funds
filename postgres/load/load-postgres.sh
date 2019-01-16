@@ -27,6 +27,9 @@ echo "CSVLOADFILE=${CSVLOADFILE}"
 
 CURR_DATE=`date "+%Y-%m-%d"`
 
+echo ${CURR_DATE}
+echo ${LOADHOME}/price_new-${CURR_DATE}.csv
+
 psql << EOF
 
   DELETE FROM s_price;
