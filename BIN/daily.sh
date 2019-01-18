@@ -15,6 +15,8 @@ then
   mkdir -p ${DATA_LOAD_HOME}
 fi
 
+cp -p $HOME/Code/funds/Data/price-diff-s_price.csv ${DATA_LOAD_HOME}
+
 ${HOME}/Code/funds/postgres/load/load-postgres.sh
 ${HOME}/Code/funds/postgres/load/unload-mw-new.sh
 
