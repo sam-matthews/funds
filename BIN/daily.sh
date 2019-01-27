@@ -15,6 +15,12 @@ then
   mkdir -p ${DATA_LOAD_HOME}
 fi
 
+echo "COPY $HOME/Code/funds/Data/price-diff-s_price.csv to ${DATA_LOAD_HOME}"
+cp $HOME/Code/funds/Data/price-diff-s_price.csv ${DATA_LOAD_HOME}
+
+echo Checking if file has been copied
+ls -l $HOME/Code/funds/Data/price-diff-s_price.csv
+
 ${HOME}/Code/funds/postgres/load/load-postgres.sh
 ${HOME}/Code/funds/postgres/load/unload-mw-new.sh
 
