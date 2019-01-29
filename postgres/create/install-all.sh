@@ -22,6 +22,7 @@ psql  -f ${HOME}/Code/funds/postgres/tabs/price-new.tab
 psql  -f ${HOME}/Code/funds/postgres/tabs/s_stock.tab
 psql  -f ${HOME}/Code/funds/postgres/tabs/analytic_lkp.tab
 psql  -f ${HOME}/Code/funds/postgres/tabs/analytic_rep.tab
+psql  -f ${HOME}/Code/funds/postgres/tabs/study_bollinger_bands.tab
 psql  -f ${HOME}/Code/funds/postgres/tabs/eom_generation.tab
 psql  -f ${HOME}/Code/funds/postgres/tabs/portfolio-fund.tab
 psql  -f ${HOME}/Code/funds/postgres/tabs/portfolio-price-history.tab
@@ -43,6 +44,10 @@ psql  -f ${HOME}/Code/funds/postgres/fun/unload-stg-new.fun
 echo '========================='
 echo 'Create Function: load_sma_fund_data()'
 psql  -f ${HOME}/Code/funds/postgres/load/load-sma-fund-data.fun
+
+echo '========================='
+echo 'Create Function: bollinger()'
+psql  -f ${HOME}/Code/funds/postgres/fun/bollinger.fun
 
 echo '========================='
 echo 'Create Function: sma()'
