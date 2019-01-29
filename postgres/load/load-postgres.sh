@@ -65,8 +65,10 @@ psql << EOF
   \COPY price_new TO '${LOADHOME}/price_new-${CURR_DATE}.csv' DELIMITER ',' CSV HEADER;
 
   -- Generate SMA Data. This adds SMA data into the analytic_rep table.
-
   SELECT FROM sma();
+
+  -- Generate Bollinger Band Data
+  SELECT FROM bollinger();
 
 EOF
 exit 0

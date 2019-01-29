@@ -1,0 +1,13 @@
+\! echo "======================="
+\! echo "Create Table: study_bollinger_bands"
+
+CREATE TABLE IF NOT EXISTS study_bollinger_bands
+(
+    b_date            DATE,
+    b_fund            CHAR(10),
+    b_middle_point    REAL,
+    b_high_point      REAL,
+    b_low_point       REAL
+);
+
+
