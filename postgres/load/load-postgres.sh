@@ -32,6 +32,9 @@ echo ${LOADHOME}/price_new-${CURR_DATE}.csv
 
 psql << EOF
 
+\! echo "======================="
+\! echo "Load days data"
+
   DELETE FROM s_price;
 
   \COPY s_price FROM ${CSVLOADFILE} DELIMITER ',' CSV HEADER
@@ -59,19 +62,29 @@ psql << EOF
 
   DELETE FROM price_new WHERE p_price IS NULL;
 
-
   -- Take a backup of the current price_new data.
+
+\! echo "======================="
+\! echo "Backup PRICE Table"
 
   \COPY price_new TO '${LOADHOME}/price_new-${CURR_DATE}.csv' DELIMITER ',' CSV HEADER;
 
   -- Generate SMA Data. This adds SMA data into the analytic_rep table.
+
+\! echo "======================="
+\! echo "LOAD SMA Data"
+
   SELECT FROM sma();
 
   -- Generate Bollinger Band Data
+\! echo "======================="
+\! echo "LOAD Bollinger Data"
+
   SELECT FROM bollinger();
 
 EOF
 exit 0
+
 # remove data files older than 10 days.
 
 # Deleting files older than 10 days.
