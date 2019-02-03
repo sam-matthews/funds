@@ -31,15 +31,16 @@ BEGIN
     LOOP
 
       -- SELECT simple moving average for each SMA Level
-      INSERT INTO study_bollinger_bands (b_date, b_fund, b_middle_point, b_high_point, b_low_point)
+      INSERT INTO study_bollinger_bands (b_date, b_fund, b_price, b_middle_point, b_high_point, b_low_point)
       SELECT
         p.p_date,
         p.p_fund,
+        p.p_price,
         AVG(p.p_price) OVER(ORDER BY p,p_date ROWS BETWEEN (20-1) PRECEDING AND CURRENT ROW),
-        AVG(p.p_price) OVER(ORDER BY p,p_date ROWS BETWEEN (20-1) PRECEDING AND CURRENT ROW) + 
-        	2 * STDDEV(p.p_price) OVER(ORDER BY p,p_date ROWS BETWEEN (20-1) PRECEDING AND CURRENT ROW), 
+        AVG(p.p_price) OVER(ORDER BY p,p_date ROWS BETWEEN (20-1) PRECEDING AND CURRENT ROW) +
+        	2 * STDDEV(p.p_price) OVER(ORDER BY p,p_date ROWS BETWEEN (20-1) PRECEDING AND CURRENT ROW),
         AVG(p.p_price) OVER(ORDER BY p,p_date ROWS BETWEEN (20-1) PRECEDING AND CURRENT ROW) -
-        	2 * STDDEV(p.p_price) OVER(ORDER BY p,p_date ROWS BETWEEN (20-1) PRECEDING AND CURRENT ROW) 
+        	2 * STDDEV(p.p_price) OVER(ORDER BY p,p_date ROWS BETWEEN (20-1) PRECEDING AND CURRENT ROW)
       FROM price_new p
       WHERE 1=1
         AND p.p_fund = ref.fund_name

@@ -23,6 +23,7 @@ psql  -f ${HOME}/Code/funds/postgres/tabs/s_stock.tab
 psql  -f ${HOME}/Code/funds/postgres/tabs/analytic_lkp.tab
 psql  -f ${HOME}/Code/funds/postgres/tabs/analytic_rep.tab
 psql  -f ${HOME}/Code/funds/postgres/tabs/study_bollinger_bands.tab
+psql  -f ${HOME}/Code/funds/postgres/tabs/study_rsi.tab
 psql  -f ${HOME}/Code/funds/postgres/tabs/eom_generation.tab
 psql  -f ${HOME}/Code/funds/postgres/tabs/portfolio-fund.tab
 psql  -f ${HOME}/Code/funds/postgres/tabs/portfolio-price-history.tab

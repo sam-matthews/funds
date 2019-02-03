@@ -32,6 +32,9 @@ echo ${LOADHOME}/price_new-${CURR_DATE}.csv
 
 psql << EOF
 
+  \! echo "======================="
+  \! echo "Load new data"
+
   DELETE FROM s_price;
 
   \COPY s_price FROM ${CSVLOADFILE} DELIMITER ',' CSV HEADER
@@ -59,16 +62,33 @@ psql << EOF
 
   DELETE FROM price_new WHERE p_price IS NULL;
 
-
   -- Take a backup of the current price_new data.
+
+  \! echo "======================="
+  \! echo "Backup Price data"
 
   \COPY price_new TO '${LOADHOME}/price_new-${CURR_DATE}.csv' DELIMITER ',' CSV HEADER;
 
   -- Generate SMA Data. This adds SMA data into the analytic_rep table.
+
+  \! echo "======================="
+  \! echo "Generate SMA Data"
+
   SELECT FROM sma();
 
   -- Generate Bollinger Band Data
+
+  \! echo "======================="
+  \! echo "Generate Bollinger Data"
+
   SELECT FROM bollinger();
+
+  -- Generate RSI Data
+
+  \! echo "======================="
+  \! echo "Generate RSI Data"
+
+  SELECT FROM rsi();
 
 EOF
 exit 0
