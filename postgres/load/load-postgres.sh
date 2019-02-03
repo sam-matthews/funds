@@ -64,22 +64,21 @@ psql << EOF
 
   -- Take a backup of the current price_new data.
 
-  \! echo "======================="
-  \! echo "Backup Price data"
+\! echo "======================="
+\! echo "Backup PRICE Table"
 
   \COPY price_new TO '${LOADHOME}/price_new-${CURR_DATE}.csv' DELIMITER ',' CSV HEADER;
 
   -- Generate SMA Data. This adds SMA data into the analytic_rep table.
 
-  \! echo "======================="
-  \! echo "Generate SMA Data"
+\! echo "======================="
+\! echo "LOAD SMA Data"
 
   SELECT FROM sma();
 
   -- Generate Bollinger Band Data
-
-  \! echo "======================="
-  \! echo "Generate Bollinger Data"
+\! echo "======================="
+\! echo "LOAD Bollinger Data"
 
   SELECT FROM bollinger();
 
@@ -92,6 +91,7 @@ psql << EOF
 
 EOF
 exit 0
+
 # remove data files older than 10 days.
 
 # Deleting files older than 10 days.
