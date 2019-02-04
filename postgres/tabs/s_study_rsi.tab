@@ -1,0 +1,19 @@
+\! echo "======================="
+\! echo "Create Table: s_study_rsi"
+
+CREATE TABLE IF NOT EXISTS s_study_rsi
+(
+  p_fund CHAR(10),
+  row_number INT,
+  p_date     DATE,
+	p_price    NUMERIC,
+	p_diff     NUMERIC,
+	gain       NUMERIC,
+	loss       NUMERIC,
+	gain_avg   NUMERIC,
+	loss_avg   NUMERIC,
+	rs         NUMERIC,
+	rsi        NUMERIC
+);
+
+

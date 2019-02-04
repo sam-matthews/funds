@@ -32,8 +32,8 @@ echo ${LOADHOME}/price_new-${CURR_DATE}.csv
 
 psql << EOF
 
-\! echo "======================="
-\! echo "Load days data"
+  \! echo "======================="
+  \! echo "Load new data"
 
   DELETE FROM s_price;
 
@@ -81,6 +81,13 @@ psql << EOF
 \! echo "LOAD Bollinger Data"
 
   SELECT FROM bollinger();
+
+  -- Generate RSI Data
+
+  \! echo "======================="
+  \! echo "Generate RSI Data"
+
+  SELECT FROM rsi();
 
 EOF
 exit 0
