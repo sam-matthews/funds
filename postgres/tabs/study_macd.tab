@@ -1,8 +1,6 @@
 \! echo "======================="
 \! echo "Create Table: study_macd"
 
-DROP TABLE study_macd;
-
 CREATE TABLE IF NOT EXISTS study_macd
 (
   row_number  INT,
@@ -14,5 +12,3 @@ CREATE TABLE IF NOT EXISTS study_macd
   macd_line   NUMERIC,
   signal      NUMERIC
 );
-
-
