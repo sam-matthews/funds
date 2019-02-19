@@ -22,7 +22,7 @@ BEGIN
   TRUNCATE TABLE analytic_lkp;
   FOR ref IN
 
-    SELECT DISTINCT fund_name FROM r_fund
+    SELECT DISTINCT fund_name FROM r_fund ORDER BY fund_name
     LOOP
 
       INSERT INTO analytic_lkp(a_fund, a_type, a_level1)
@@ -47,6 +47,14 @@ BEGIN
 
       INSERT INTO analytic_lkp(a_fund, a_type, a_level1)
       VALUES(ref.fund_name, 'BOLLINGER','20');
+
+      -- Add data for EMA's 12 + 26 MACD Base calculation.
+
+      INSERT INTO analytic_lkp(a_fund, a_type, a_level1, a_level2)
+      VALUES(ref.fund_name, 'EMA',12, 0.1538);
+
+      INSERT INTO analytic_lkp(a_fund, a_type, a_level1, a_level2)
+      VALUES(ref.fund_name, 'EMA',26, 0.0741);
 
     END LOOP;
 

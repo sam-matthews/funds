@@ -1,0 +1,18 @@
+\! echo "======================="
+\! echo "Create Table: study_macd"
+
+DROP TABLE study_macd;
+
+CREATE TABLE IF NOT EXISTS study_macd
+(
+  row_number  INT,
+  p_date      DATE,
+  p_fund      CHAR(10),
+  p_price     NUMERIC,
+  ema_12      NUMERIC,
+  ema_26      NUMERIC,
+  macd_line   NUMERIC,
+  signal      NUMERIC
+);
+
+

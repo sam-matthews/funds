@@ -89,6 +89,15 @@ psql << EOF
 
   SELECT FROM rsi();
 
+ \! echo "======================="
+  \! echo "Generate EMA Data"
+
+  SELECT FROM ema();
+
+  \! echo "======================="
+  \! echo "Generate MACD Data"
+
+  SELECT FROM macd();
 EOF
 exit 0
 
