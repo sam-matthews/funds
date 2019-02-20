@@ -21,9 +21,9 @@
 CREATE TABLE IF NOT EXISTS analytic_lkp(
   a_fund CHAR(10),
   a_type CHAR(10),
-  a_level1 CHAR(3),
-  a_level2 CHAR(3),
-  a_level3 CHAR(3)
+  a_level1 NUMERIC,
+  a_level2 NUMERIC,
+  a_level3 NUMERIC
 );
 
 

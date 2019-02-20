@@ -41,7 +41,7 @@ BEGIN
   RAISE NOTICE 'Starting RSI routine';
 
   -- TRUNCATE TABLE
-  RAISE NOTICE 'Truncnate table.';
+  -- RAISE NOTICE 'Truncnate table.';
 
   TRUNCATE TABLE study_rsi;
 
@@ -51,12 +51,12 @@ BEGIN
     -- WHERE fund_name IN ('APA','MPC','MPD','^NZX50')
     ORDER BY fund_name
   LOOP
-    RAISE NOTICE '---------------------';
-    RAISE NOTICE 'Fund Name: %', fund.fund_name;
+    -- RAISE NOTICE '---------------------';
+    -- RAISE NOTICE 'Fund Name: %', fund.fund_name;
     TRUNCATE TABLE s_study_rsi;
     -- Populate RSI Table.
 
-    RAISE NOTICE 'Load Data';
+    -- RAISE NOTICE 'Load Data';
     INSERT INTO s_study_rsi
     SELECT
       a.p_fund,
@@ -68,7 +68,7 @@ BEGIN
 
     -- Update Difference between data points
 
-    RAISE NOTICE 'Update Diff in ??? points';
+    -- RAISE NOTICE 'Update Diff in ??? points';
     UPDATE s_study_rsi SET p_diff = subquery.diff
     FROM
     (
@@ -83,24 +83,24 @@ BEGIN
     s_study_rsi.row_number = subquery.row_number;
 
     -- Update GAIN and LOSS columns
-    RAISE NOTICE 'Update gain and loss columns';
-    RAISE NOTICE 'Update Gain';
+    -- RAISE NOTICE 'Update gain and loss columns';
+    -- RAISE NOTICE 'Update Gain';
     UPDATE s_study_rsi
     SET gain =  p_diff, loss=COALESCE(loss,0)
     WHERE p_fund = fund.fund_name AND p_diff > 0;
 
-    RAISE NOTICE 'Update Loss';
+    --RAISE NOTICE 'Update Loss';
     UPDATE s_study_rsi
     SET loss =  ABS(p_diff), gain=COALESCE(gain,0)
     WHERE p_fund = fund.fund_name AND p_diff < 0;
 
-    RAISE NOTICE 'Update no change';
+    --RAISE NOTICE 'Update no change';
     UPDATE s_study_rsi
     SET gain = p_diff, loss = p_diff
     WHERE p_fund = fund.fund_name AND p_diff = 0;
 
   -- Now we start calculation
-    RAISE NOTICE 'Calculate RSI';
+    -- RAISE NOTICE 'Calculate RSI';
     FOR ref_a IN SELECT * FROM s_study_rsi WHERE p_fund = fund.fund_name ORDER BY row_number
 
     LOOP

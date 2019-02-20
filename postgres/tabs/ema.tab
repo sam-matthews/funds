@@ -1,0 +1,15 @@
+-- ema.tab
+-- Sam Matthews
+-- ema is a table which holds ema data
+
+\! echo "======================="
+\! echo "Create Table: ema"
+CREATE TABLE IF NOT EXISTS ema(
+  ema_row_number  INT,
+  ema_date        DATE,
+  ema_fund        CHAR(10),
+  ema_price       NUMERIC,
+  ema_level       INT,
+  ema_value       NUMERIC)
+;
+
