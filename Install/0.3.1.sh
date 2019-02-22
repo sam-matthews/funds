@@ -17,10 +17,12 @@ psql -f ${TABS_HOME}/s_summary-data.tab
 psql -f ${TABS_HOME}/summary-data.tab
 psql -f ${TABS_HOME}/analytic_lkp.tab
 psql -f ${TABS_HOME}/analytic_rep.tab
+psql -f ${TABS_HOME}/study_bollinger_bands.tab
 
 
 # Create extentions
-psql -f ${SQL_HOME}/extention-crosstab.sql
+# Commented because there is a permiss
+# psql -f ${SQL_HOME}/extention-crosstab.sql
 
 # Create functions
 psql -f ${FUN_HOME}/summary-data.fun
