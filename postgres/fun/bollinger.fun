@@ -48,5 +48,15 @@ BEGIN
 
     END LOOP;
 
+    -- INSERT specific data into analytic_rep table so Bollinger data can be added to the summary_data.
+    INSERT INTO analytic_rep (r_date, r_fund, r_analytic, r_value)
+    SELECT b_date, b_fund, 'BOL-MIDDLE', b_middle_point FROM study_bollinger_bands;
+
+    INSERT INTO analytic_rep (r_date, r_fund, r_analytic, r_value)
+    SELECT b_date, b_fund, 'BOL-HIGH', b_high_point FROM study_bollinger_bands;
+
+    INSERT INTO analytic_rep (r_date, r_fund, r_analytic, r_value)
+    SELECT b_date, b_fund, 'BOL-LOW', b_low_point FROM study_bollinger_bands;
+
 END;
 $$ LANGUAGE plpgsql;
