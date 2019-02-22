@@ -17,10 +17,12 @@
 
 \! echo "======================="
 \! echo "Create Table: analytic_lkp"
+DROP TABLE analytic_lkp;
 
 CREATE TABLE IF NOT EXISTS analytic_lkp(
   a_fund CHAR(10),
-  a_type CHAR(10),
+  a_type CHAR(20),
+  a_sequence INT,
   a_level1 NUMERIC,
   a_level2 NUMERIC,
   a_level3 NUMERIC
