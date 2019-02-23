@@ -69,7 +69,15 @@ psql << EOF
 
   \COPY price_new TO '${LOADHOME}/price_new-${CURR_DATE}.csv' DELIMITER ',' CSV HEADER;
 
-  -- Generate SMA Data. This adds SMA data into the analytic_rep table.
+  \! echo "======================="
+  \! echo "Populate price data into analytic_rep"
+
+  TRUNCATE TABLE analytic_rep;
+
+  \! echo "======================="
+  \! echo "Populate price data into analytic_rep"
+
+  SELECT FROM load_price_to_rep();
 
 \! echo "======================="
 \! echo "LOAD SMA Data"
@@ -89,7 +97,7 @@ psql << EOF
 
   SELECT FROM rsi();
 
- \! echo "======================="
+  \! echo "======================="
   \! echo "Generate EMA Data"
 
   SELECT FROM ema();
@@ -98,12 +106,15 @@ psql << EOF
   \! echo "Generate MACD Data"
 
   SELECT FROM macd();
+
 EOF
-exit 0
+
+echo "======================="
+echo "Generate summary data"
+${HOME}/Code/funds/postgres/load/load-summary-data.sh
 
 # remove data files older than 10 days.
 
 # Deleting files older than 10 days.
 echo "Removing files older than 10 days."
 find ${UNLOADHOME} -name 'FULL-*-PRICE.csv' -mtime +10 -exec rm {} \;
-
