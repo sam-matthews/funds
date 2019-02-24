@@ -11,10 +11,13 @@ APPNAME="funds"
 APPHOME="${HOME}/Code/${APPNAME}"
 DBHOME="${APPHOME}/postgres"
 CFGHOME="${DBHOME}/cfg"
+SQLHOME="${DBHOME}/sql"
 
 DATAHOME=${HOME}/Data/${APPNAME}
 UNLOADHOME="${DATAHOME}/unload"
 LOADHOME="${DATAHOME}/load"
+
+# COmmands
 
 if [ ! -z $CSV_FILE ]
 then
@@ -23,100 +26,46 @@ else
   CSVLOADFILE="${LOADHOME}/price-diff/price-diff-s_price.csv"
 fi
 
-echo "CSVLOADFILE=${CSVLOADFILE}"
+# echo "CSVLOADFILE=${CSVLOADFILE}"
 
 CURR_DATE=`date "+%Y-%m-%d"`
 
-echo ${CURR_DATE}
-echo ${LOADHOME}/price_new-${CURR_DATE}.csv
+# echo ${CURR_DATE}
+# echo ${LOADHOME}/price_new-${CURR_DATE}.csv
 
-psql << EOF
+echo "Load new data"
+psql -q -t -c "TRUNCATE TABLE s_price;"
+psql -q -t -c "\COPY s_price FROM ${CSVLOADFILE} DELIMITER ',' CSV HEADER"
+psql -q -f ${SQLHOME}/load-staging.sql
+psql -q -t -c "DELETE FROM price_new WHERE p_price IS NULL"
+psql -q -t -c "\COPY price_new TO '${LOADHOME}/price_new-${CURR_DATE}.csv' DELIMITER ',' CSV HEADER;"
 
-  \! echo "======================="
-  \! echo "Load new data"
+echo "Populate analytical studies"
+psql -q -t -c "TRUNCATE TABLE analytic_rep;"
 
-  DELETE FROM s_price;
+echo "Generate price"
+psql -q -t -c "SELECT FROM load_price_to_rep();"
 
-  \COPY s_price FROM ${CSVLOADFILE} DELIMITER ',' CSV HEADER
+echo "Generate SMA"
+psql -q -t -c "SELECT FROM sma();"
 
-  INSERT INTO price_new(
-      p_date,
-      p_fund,
-      p_price)
-    SELECT
-      sp_date,
-      sp_fund,
-      sp_price
-    FROM
-      s_price
-    EXCEPT
-    SELECT
-      p_date,
-      p_fund,
-      p_price
-    FROM
-      price_new
-    ;
+echo "Generate Bollinger"
+psql -q -t -c "SELECT FROM bollinger();"
 
-  -- Delete rows where p_price IS NULL. This will remove any blank rows which get imported.
+echo "Generate RSI"
+psql -q -t -c "SELECT FROM rsi();"
 
-  DELETE FROM price_new WHERE p_price IS NULL;
+echo "Generate EMA"
+psql -q -t -c "SELECT FROM ema();"
 
-  -- Take a backup of the current price_new data.
+echo "Generate MACD"
+psql -q -t -c "SELECT FROM macd();"
 
-  \! echo "======================="
-  \! echo "Backup Price data"
-
-  \COPY price_new TO '${LOADHOME}/price_new-${CURR_DATE}.csv' DELIMITER ',' CSV HEADER;
-
-  \! echo "======================="
-  \! echo "Populate price data into analytic_rep"
-
-  TRUNCATE TABLE analytic_rep;
-
-  \! echo "======================="
-  \! echo "Populate price data into analytic_rep"
-
-  SELECT FROM load_price_to_rep();
-
-  \! echo "======================="
-  \! echo "Generate SMA Data"
-
-  SELECT FROM sma();
-
-  -- Generate Bollinger Band Data
-
-  \! echo "======================="
-  \! echo "Generate Bollinger Data"
-
-  SELECT FROM bollinger();
-
-  -- Generate RSI Data
-
-  \! echo "======================="
-  \! echo "Generate RSI Data"
-
-  SELECT FROM rsi();
-
-  \! echo "======================="
-  \! echo "Generate EMA Data"
-
-  SELECT FROM ema();
-
-  \! echo "======================="
-  \! echo "Generate MACD Data"
-
-  SELECT FROM macd();
-
-EOF
-
-echo "======================="
 echo "Generate summary data"
 ${HOME}/Code/funds/postgres/load/load-summary-data.sh
 
-psql -c "select from study_score();"
-# remove data files older than 10 days.
+echo "Generate score data."
+psql -q -t -c "select from study_score();"
 
-# Deleting files older than 10 days.
 echo "Removing files older than 10 days."
 find ${UNLOADHOME} -name 'FULL-*-PRICE.csv' -mtime +10 -exec rm {} \;
