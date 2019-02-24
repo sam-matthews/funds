@@ -44,8 +44,8 @@ BEGIN
   LOOP
 
     -- SELECT simple moving average for each SMA Level
-    RAISE NOTICE '----------------------------';
-    RAISE NOTICE 'FUND: %', ref.fund_name;
+    --RAISE NOTICE '----------------------------';
+    --RAISE NOTICE 'FUND: %', ref.fund_name;
     -- RAISE NOTICE 'EMA LEVEL: %', ref.a_level1;
 
     FOR ref_a IN

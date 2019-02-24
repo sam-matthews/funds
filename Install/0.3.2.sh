@@ -18,3 +18,5 @@ psql -f ${TABS_HOME}/score_data.tab
 
 # Create functions
 psql -f ${FUN_HOME}/study_score.fun
+psql -f ${FUN_HOME}/ema.fun
+psql -f ${FUN_HOME}/unload_stg_new.fun

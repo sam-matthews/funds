@@ -19,7 +19,7 @@ EOF
 
 for fund in `cat ${CFGHOME}/mw-funds.cfg`
 do
-  echo $fund
+  # echo $fund
 
   psql << EOF > /dev/null
 
