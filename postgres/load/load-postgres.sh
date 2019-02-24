@@ -114,6 +114,7 @@ echo "======================="
 echo "Generate summary data"
 ${HOME}/Code/funds/postgres/load/load-summary-data.sh
 
+psql -c "select from study_score();"
 # remove data files older than 10 days.
 
 # Deleting files older than 10 days.
