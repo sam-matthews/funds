@@ -25,8 +25,6 @@ DECLARE
 
 BEGIN
 
-  RAISE NOTICE 'Starting MACD routine';
-
   -- TRUNCATE TABLE
   -- RAISE NOTICE 'Truncnate table.';
 

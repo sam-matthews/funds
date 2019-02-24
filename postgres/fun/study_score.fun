@@ -45,7 +45,7 @@ DECLARE
 
 BEGIN
 
-  RAISE NOTICE 'Starting score routine';
+
   TRUNCATE TABLE score_data;
   FOR ref IN
 
