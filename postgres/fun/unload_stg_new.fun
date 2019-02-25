@@ -1,4 +1,4 @@
-DROP FUNCTION mw_new(fund CHAR(10));
+-- DROP FUNCTION mw_new(fund CHAR(10));
 
 CREATE OR REPLACE FUNCTION mw_new(fund CHAR(10)) RETURNS VOID AS $$
 DECLARE
@@ -10,7 +10,7 @@ DECLARE
 
 BEGIN
   counter := 0;
-  raise notice 'Loading: %', fund;
+  -- raise notice 'Loading: %', fund;
 
   -- TRUNCATE TABLE s_stock;
   DELETE FROM s_stock;

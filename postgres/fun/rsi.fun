@@ -39,8 +39,6 @@ DECLARE
 
 BEGIN
 
-  RAISE NOTICE 'Starting RSI routine';
-
   -- TRUNCATE TABLE
   -- RAISE NOTICE 'Truncnate table.';
 
