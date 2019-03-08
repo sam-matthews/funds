@@ -75,7 +75,11 @@ BEGIN
       INSERT INTO analytic_lkp(a_fund, a_type, a_level1, a_level2) VALUES (ref.fund_name, 'EMA', 12, 0.1538);
       INSERT INTO analytic_lkp(a_fund, a_type, a_level1, a_level2) VALUES (ref.fund_name, 'EMA', 26, 0.0741);
 
+      -- STDDEV
 
+      -- Actual Standard Dev
+      INSERT INTO analytic_lkp(a_fund, a_type, a_sequence, a_level1) VALUES (ref.fund_name, 'STDDEV', 40, 14);
+      INSERT INTO analytic_lkp(a_fund, a_type, a_sequence) VALUES (ref.fund_name, 'VOLATILITY', 41);
     END LOOP;
 
 END;
