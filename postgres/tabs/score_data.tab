@@ -21,7 +21,8 @@ CREATE TABLE IF NOT EXISTS score_data
   s_sma       INT,
   s_bol       INT,
   s_rsi       INT,
-  s_macd      INT
+  s_macd      INT,
+  s_volatility  INT
 );
 
 

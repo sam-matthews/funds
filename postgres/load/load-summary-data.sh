@@ -35,20 +35,22 @@ do
       AND lkp.a_fund = ''$fund''
     ORDER BY rep.r_date, lkp.a_sequence')
     AS analytic_rep(
-      r_date    DATE,
-      price     NUMERIC,
-      sma6    NUMERIC,
-      sma12     NUMERIC,
-      sma25     NUMERIC,
-      sma50     NUMERIC,
-      sma100    NUMERIC,
-      sma200    NUMERIC,
-      s_bol_mid   NUMERIC,
-      s_bol_hig   NUMERIC,
-      s_bol_low   NUMERIC,
-      s_rsi       NUMERIC,
-      s_macd      NUMERIC,
-      s_macd_sig  NUMERIC );
+      r_date        DATE,
+      price         NUMERIC,
+      sma6          NUMERIC,
+      sma12         NUMERIC,
+      sma25         NUMERIC,
+      sma50         NUMERIC,
+      sma100        NUMERIC,
+      sma200        NUMERIC,
+      s_bol_mid     NUMERIC,
+      s_bol_hig     NUMERIC,
+      s_bol_low     NUMERIC,
+      s_rsi         NUMERIC,
+      s_macd        NUMERIC,
+      s_macd_sig    NUMERIC,
+      s_stddev      NUMERIC,
+      s_volatility  NUMERIC);
 
     INSERT INTO summary_data (
       s_date,
@@ -65,7 +67,9 @@ do
       s_bol_low,
       s_rsi,
       s_macd,
-      s_macd_sig)
+      s_macd_sig,
+      s_stddev,
+      s_volatility)
     SELECT
       s_date,
       '$fund',
@@ -81,7 +85,9 @@ do
       s_bol_low,
       s_rsi,
       s_macd,
-      s_macd_sig
+      s_macd_sig,
+      s_stddev,
+      s_volatility
     FROM s_summary_data;
 
 EOF

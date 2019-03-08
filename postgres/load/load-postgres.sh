@@ -49,6 +49,9 @@ psql -q -t -c "SELECT FROM load_price_to_rep();"
 echo "Generate SMA"
 psql -q -t -c "SELECT FROM sma();"
 
+echo "Generate STDDEV and Volatility"
+psql -q -t -c "SELECT FROM stddev();"
+
 echo "Generate Bollinger"
 psql -q -t -c "SELECT FROM bollinger();"
 
