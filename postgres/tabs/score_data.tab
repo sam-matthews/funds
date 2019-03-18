@@ -1,0 +1,28 @@
+/*
+
+  summary-data.tab
+  Sam Matthews
+  19th February 2019
+
+  Hold summary data
+
+*/
+
+
+\! echo "======================="
+\! echo "Create Table: score_data"
+DROP TABLE score_data;
+CREATE TABLE IF NOT EXISTS score_data
+(
+  s_date      DATE,
+  s_fund      CHAR(10),
+  s_tot_score NUMERIC,
+  s_price     INT,
+  s_sma       INT,
+  s_bol       INT,
+  s_rsi       INT,
+  s_macd      INT,
+  s_volatility  INT
+);
+
+

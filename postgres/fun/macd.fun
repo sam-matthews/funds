@@ -25,8 +25,6 @@ DECLARE
 
 BEGIN
 
-  RAISE NOTICE 'Starting MACD routine';
-
   -- TRUNCATE TABLE
   -- RAISE NOTICE 'Truncnate table.';
 
@@ -97,5 +95,12 @@ BEGIN
 
     END LOOP;
   END LOOP;
+
+  INSERT INTO analytic_rep(r_date, r_fund, r_analytic, r_value)
+  SELECT p_date, p_fund, 'MACD', macd_line FROM study_macd;
+
+  INSERT INTO analytic_rep(r_date, r_fund, r_analytic, r_value)
+  SELECT p_date, p_fund, 'MACD-SIGNAL', signal FROM study_macd;
+
 END;
 $$ LANGUAGE plpgsql;

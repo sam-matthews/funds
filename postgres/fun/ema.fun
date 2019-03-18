@@ -37,13 +37,15 @@ BEGIN
     SELECT a.fund_name AS fund_name, b.a_level1 AS a_level1, b.a_level2 AS a_level2
     FROM r_fund a
     JOIN analytic_lkp b ON a.fund_name = b.a_fund
-    WHERE a_type = 'EMA'
+    WHERE 1=1
+      AND b.a_type = 'EMA'
+      --AND a.fund_name = 'APA'
 
   LOOP
 
     -- SELECT simple moving average for each SMA Level
-
-    -- RAISE NOTICE 'FUND: %', ref.fund_name;
+    --RAISE NOTICE '----------------------------';
+    --RAISE NOTICE 'FUND: %', ref.fund_name;
     -- RAISE NOTICE 'EMA LEVEL: %', ref.a_level1;
 
     FOR ref_a IN
@@ -56,10 +58,14 @@ BEGIN
     LOOP
 
 
-      ema_current := ref_a.p_price;
 
       IF ref_a.row_number = 1 THEN
-        --  NOTICE 'INSERT when row number is 1.';
+
+        ema_current := ref_a.p_price;
+
+        --RAISE NOTICE 'INSERT when row number is 1.';
+        --RAISE NOTICE 'EMA_CURRENT = %', ema_current;
+        --RAISE NOTICE 'Current Price = %', ref_a.p_price;
 
         INSERT INTO ema (
           ema_row_number,
@@ -78,13 +84,11 @@ BEGIN
 
         ELSE
 
-
           ema_current := ROUND(CAST(((ref_a.p_price - ema_previous) * ref.a_level2) + ema_previous AS NUMERIC),4);
 
           --RAISE NOTICE 'EMA_CURRENT = %', ema_current;
           --RAISE NOTICE 'Current Price = %', ref_a.p_price;
           --RAISE NOTICE 'EMA_PREVIOUS = %', ema_previous;
-          --RAISE NOTICE 'ALPHA = %', alpha;
 
           INSERT INTO ema (
             ema_row_number,

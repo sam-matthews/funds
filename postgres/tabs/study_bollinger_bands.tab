@@ -1,6 +1,7 @@
 \! echo "======================="
 \! echo "Create Table: study_bollinger_bands"
 
+DROP TABLE study_bollinger_bands;
 CREATE TABLE IF NOT EXISTS study_bollinger_bands
 (
     b_date            DATE,
