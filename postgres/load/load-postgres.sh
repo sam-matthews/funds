@@ -17,7 +17,7 @@ DATAHOME=${HOME}/Data/${APPNAME}
 UNLOADHOME="${DATAHOME}/unload"
 LOADHOME="${DATAHOME}/load"
 
-# COmmands
+# Commands
 
 if [ ! -z $CSV_FILE ]
 then
@@ -34,11 +34,24 @@ CURR_DATE=`date "+%Y-%m-%d"`
 # echo ${LOADHOME}/price_new-${CURR_DATE}.csv
 
 echo "Load new data"
+
+# echo "Truncating s_price"
 psql -q -t -c "TRUNCATE TABLE s_price;"
+
+
+# echo "copy new data"
 psql -q -t -c "\COPY s_price FROM ${CSVLOADFILE} DELIMITER ',' CSV HEADER"
-psql -q -f ${SQLHOME}/load-staging.sql
+
+# echo "load-staging"
+psql -q -f "${SQLHOME}/load-staging.sql"
+
+# echo "Delete any NULL Data."
 psql -q -t -c "DELETE FROM price_new WHERE p_price IS NULL"
+
+# echo "Export current data"
 psql -q -t -c "\COPY price_new TO '${LOADHOME}/price_new-${CURR_DATE}.csv' DELIMITER ',' CSV HEADER;"
+
+cp -p ${LOADHOME}/price_new-${CURR_DATE}.csv ${UNLOADHOME}/latest-price-data.csv
 
 echo "Populate analytical studies"
 psql -q -t -c "TRUNCATE TABLE analytic_rep;"
@@ -71,4 +84,4 @@ echo "Generate score data."
 psql -q -t -c "select from study_score();"
 
 echo "Removing files older than 10 days."
-find ${UNLOADHOME} -name 'FULL-*-PRICE.csv' -mtime +10 -exec rm {} \;
+find ${LOADHOME} -name 'FULL-*-PRICE.csv' -mtime +10 -exec rm {} \;
