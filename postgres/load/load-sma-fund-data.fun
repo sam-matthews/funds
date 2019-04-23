@@ -47,6 +47,9 @@ BEGIN
       INSERT INTO analytic_lkp(a_fund, a_type, a_sequence, a_level1)
       VALUES(ref.fund_name, 'SMA-200',16,200);
 
+      INSERT INTO analytic_lkp(a_fund, a_type, a_sequence, a_level1)
+      VALUES(ref.fund_name, 'SMA-500',17,500);
+
       -- Data for Bolllinger
 
       INSERT INTO analytic_lkp(a_fund, a_type, a_sequence)
