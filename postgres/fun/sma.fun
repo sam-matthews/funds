@@ -122,6 +122,21 @@ BEGIN
         -- AND CAST(l.a_level1 AS INT) = 200
       ORDER BY p_date;
 
+      INSERT INTO analytic_rep (r_date, r_fund, r_analytic, r_level1, r_value)
+      SELECT
+        p.p_date,
+        p.p_fund,
+        l.a_type,
+        500,
+        AVG(p.p_price) OVER(ORDER BY p,p_date ROWS BETWEEN (500-1) PRECEDING AND CURRENT ROW)
+      FROM price_new p, analytic_lkp l
+      WHERE 1=1
+        AND p.p_fund = l.a_fund
+        AND p_fund = ref.fund_name
+        AND l.a_type = 'SMA-500'
+        -- AND CAST(l.a_level1 AS INT) = 500
+      ORDER BY p_date;
+
     END LOOP;
 
 END;

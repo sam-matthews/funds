@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS s_summary_data
   s_sma_50      NUMERIC,
   s_sma_100     NUMERIC,
   s_sma_200     NUMERIC,
+  s_sma_500     NUMERIC,
   s_bol_mid     NUMERIC,
   s_bol_hig     NUMERIC,
   s_bol_low     NUMERIC,
