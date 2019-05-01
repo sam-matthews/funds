@@ -38,6 +38,7 @@ echo "Load new data"
 # echo "Truncating s_price"
 psql -q -t -c "TRUNCATE TABLE s_price;"
 
+
 # echo "copy new data"
 psql -q -t -c "\COPY s_price FROM ${CSVLOADFILE} DELIMITER ',' CSV HEADER"
 
