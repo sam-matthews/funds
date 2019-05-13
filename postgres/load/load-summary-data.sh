@@ -82,6 +82,7 @@ do
       s_sma_50,
       s_sma_100,
       s_sma_200,
+      s_sma_500,
       s_bol_mid,
       s_bol_hig,
       s_bol_low,
