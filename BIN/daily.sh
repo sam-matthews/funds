@@ -20,6 +20,7 @@ fi
 cp $HOME/Code/funds/Data/price-diff-s_price.csv ${DATA_LOAD_HOME}
 
 ${HOME}/Code/funds/postgres/load/load-postgres.sh
-${HOME}/Code/funds/postgres/load/unload-mw-new.sh
+
+# ${HOME}/Code/funds/postgres/load/unload-mw-new.sh
 
 
