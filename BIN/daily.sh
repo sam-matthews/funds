@@ -17,7 +17,7 @@ then
 fi
 
 # echo "COPY $HOME/Code/funds/Data/price-diff-s_price.csv to ${DATA_LOAD_HOME}"
-cp $HOME/Code/funds/Data/price-diff-s_price.csv ${DATA_LOAD_HOME}
+cp $HOME/Code/funds/Data/price-diff/price-diff-s_price.csv ${DATA_LOAD_HOME}
 
 ${HOME}/Code/funds/postgres/load/load-postgres.sh
 
