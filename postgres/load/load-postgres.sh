@@ -44,8 +44,8 @@ psql -q -t -c "\COPY s_price FROM ${CSVLOADFILE} DELIMITER ',' CSV HEADER"
 echo "load-staging"
 psql -q -f "${SQLHOME}/load-staging.sql"
 
-echo "Unload Motive Wave Data"
-${HOME}/Code/funds/postgres/load/unload-mw-new.sh
+# echo "Unload Motive Wave Data"
+# ${HOME}/Code/funds/postgres/load/unload-mw-new.sh
 
 echo "Delete any NULL Data."
 psql -q -t -c "DELETE FROM price_new WHERE p_price IS NULL"
@@ -57,16 +57,16 @@ echo "COPY current data to standard CSV file - easy to backup"
 cp -p ${UNLOADHOME}/price_new-${CURR_DATE}.csv ${UNLOADHOME}/latest-price-data.csv
 
 echo "RELOAD DATA INTO analytic_lkp BASED ON r_fund TABLE."
-psql -q -t -c "SELECT FROM load_sma_fund_data();"
+psql -q -t -c "SELECT FROM load_sma_fund_data();" -c "\q"
 
 echo "TRUNCATE analytic_rep TABLE"
 psql -q -t -c "TRUNCATE TABLE analytic_rep;"
 
 echo "LOAD price DATA FROM price_new TO analytic_rep"
-psql -q -t -c "SELECT FROM load_price_to_rep();"
+psql -q -t -c "SELECT FROM load_price_to_rep();" -c "\q"
 
 echo "LOAD SMA DATA INTO analytic_rep"
-psql -q -t -c "SELECT FROM sma();"
+psql -q -t -c "SELECT FROM sma();" -c "\q"
 
 # echo "Generate STDDEV and Volatility"
 # psql -q -t -c "SELECT FROM stddev();"
