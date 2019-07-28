@@ -31,5 +31,7 @@ BEGIN
   JOIN analytic_lkp l ON l.a_fund = p.p_fund
   WHERE l.a_type = 'PRICE';
 
+  COMMIT;
+
 END;
 $$ LANGUAGE plpgsql;
