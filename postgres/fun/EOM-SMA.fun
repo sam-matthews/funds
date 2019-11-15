@@ -26,9 +26,9 @@ DECLARE
 
 
 BEGIN
-  RAISE NOTICE 'Gathering analytical data over month end price information.';
+  RAISE NOTICE 'Gathering Month End SMA 500 Data';
 
-  -- We start by genresating a list of all funds.
+  -- We start by generating a list of all funds.
 
   FOR ref_a IN
     SELECT DISTINCT e_fund FROM EOM_Generation ORDER BY 1
@@ -44,19 +44,15 @@ BEGIN
 
     LOOP
       -- initialize some variables for each fund.
-      IF myCounter > 1 THEN
 
-        SELECT AVG(sma.e_diff) sma_diff INTO mySMA
-        FROM
-        (
-          SELECT *
-          FROM EOM_Generation
-          WHERE e_fund = ref_a.e_fund AND e_date <= ref_b.e_date
-          ORDER BY e_date DESC LIMIT mySMALevel
-        ) sma
-        GROUP BY sma.e_fund;
-
-        UPDATE EOM_Generation SET e_sma = mySMA
+      UPDATE EOM_Generation SET e_sma_500 =
+      (
+        SELECT r_value
+        FROM analytic_rep
+        WHERE 1=1
+          AND r_fund = ref_b.e_fund
+          AND r_date = ref_b.e_date
+          AND mySMA
         WHERE 1=1
           AND e_fund = ref_a.e_fund
           AND e_date = ref_b.e_date;

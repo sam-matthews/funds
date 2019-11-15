@@ -14,8 +14,6 @@ SELECT * FROM
  FROM
   (SELECT * FROM eom_generation WHERE e_date = (SELECT MAX(e_date) - INTERVAL '24 MONTHS' FROM eom_generation)) a,
   (SELECT * FROM eom_generation WHERE e_date = (SELECT MAX(e_date) FROM eom_generation)) b,
-  --(SELECT * FROM eom_generation WHERE e_date = '2015-01-01') a,
-  -- (SELECT * FROM eom_generation WHERE e_date = '2017-01-01') b,
   r_fund f, r_fund_service fs, r_service_portfolio sp
 WHERE a.e_fund = b.e_fund
   AND a.e_fund = f.fund_name
@@ -24,7 +22,7 @@ WHERE a.e_fund = b.e_fund
   -- AND fs.service_name IN ('NZX')
   -- AND sp.portfolio_name = 'KIWISAVER_SAM'
   -- AND sp.portfolio_name = 'HARRY'
-  AND sp.portfolio_name = 'SAM'
+  AND sp.portfolio_name = 'SHARESIES'
 ORDER BY "AReturn" DESC) a
 UNION
 SELECT * FROM

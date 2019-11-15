@@ -56,6 +56,9 @@ psql -q -t -c "\COPY price_new TO '${UNLOADHOME}/price_new-${CURR_DATE}.csv' DEL
 echo "COPY current data to standard CSV file - easy to backup"
 cp -p ${UNLOADHOME}/price_new-${CURR_DATE}.csv ${UNLOADHOME}/latest-price-data.csv
 
+echo "Run any changes to load_sma_fund_data changes"
+psql -f $HOME/Code/funds/postgres/load/load-sma-fund-data.fun
+
 echo "RELOAD DATA INTO analytic_lkp BASED ON r_fund TABLE."
 psql -q -t -c "SELECT FROM load_sma_fund_data();" -c "\q"
 
