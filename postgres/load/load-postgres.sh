@@ -86,8 +86,8 @@ psql -q -t -c "SELECT FROM sma();" -c "\q"
 # echo "Generate MACD"
 # psql -q -t -c "SELECT FROM macd();"
 
-# echo "Generate summary data"
-# ${HOME}/Code/funds/postgres/load/load-summary-data.sh
+echo "Generate summary data"
+${HOME}/Code/funds/postgres/load/load-summary-data.sh
 
 # echo "Generate score data."
 # psql -q -t -c "select from study_score();"

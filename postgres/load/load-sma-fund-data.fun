@@ -29,23 +29,23 @@ BEGIN
       VALUES(ref.fund_name, 'PRICE',1);
 
       -- Data for SMA
-      --INSERT INTO analytic_lkp(a_fund, a_type, a_sequence, a_level1)
-      --VALUES(ref.fund_name, 'SMA-6',11,6);
+      INSERT INTO analytic_lkp(a_fund, a_type, a_sequence, a_level1)
+      VALUES(ref.fund_name, 'SMA-5',11,5);
 
-      --INSERT INTO analytic_lkp(a_fund, a_type, a_sequence, a_level1)
-      --VALUES(ref.fund_name, 'SMA-12',12,12);
+      INSERT INTO analytic_lkp(a_fund, a_type, a_sequence, a_level1)
+      VALUES(ref.fund_name, 'SMA-10',12,10);
 
-      --INSERT INTO analytic_lkp(a_fund, a_type, a_sequence, a_level1)
-      --VALUES(ref.fund_name, 'SMA-25',13,25);
+      INSERT INTO analytic_lkp(a_fund, a_type, a_sequence, a_level1)
+      VALUES(ref.fund_name, 'SMA-20',13,20);
 
-      --INSERT INTO analytic_lkp(a_fund, a_type, a_sequence, a_level1)
-      --VALUES(ref.fund_name, 'SMA-50',14,50);
+      INSERT INTO analytic_lkp(a_fund, a_type, a_sequence, a_level1)
+      VALUES(ref.fund_name, 'SMA-50',14,50);
 
-      --INSERT INTO analytic_lkp(a_fund, a_type, a_sequence, a_level1)
-      --VALUES(ref.fund_name, 'SMA-100',15,100);
+      INSERT INTO analytic_lkp(a_fund, a_type, a_sequence, a_level1)
+      VALUES(ref.fund_name, 'SMA-100',15,100);
 
-      --INSERT INTO analytic_lkp(a_fund, a_type, a_sequence, a_level1)
-      --VALUES(ref.fund_name, 'SMA-200',16,200);
+      INSERT INTO analytic_lkp(a_fund, a_type, a_sequence, a_level1)
+      VALUES(ref.fund_name, 'SMA-200',16,200);
 
       INSERT INTO analytic_lkp(a_fund, a_type, a_sequence, a_level1)
       VALUES(ref.fund_name, 'SMA-500',17,500);

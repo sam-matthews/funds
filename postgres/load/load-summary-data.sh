@@ -37,60 +37,36 @@ do
     AS analytic_rep(
       r_date        DATE,
       price         NUMERIC,
-      sma6          NUMERIC,
-      sma12         NUMERIC,
-      sma25         NUMERIC,
+      sma5          NUMERIC,
+      sma10         NUMERIC,
+      sma20         NUMERIC,
       sma50         NUMERIC,
       sma100        NUMERIC,
       sma200        NUMERIC,
-      sma500        NUMERIC,
-      s_bol_mid     NUMERIC,
-      s_bol_hig     NUMERIC,
-      s_bol_low     NUMERIC,
-      s_rsi         NUMERIC,
-      s_macd        NUMERIC,
-      s_macd_sig    NUMERIC,
-      s_stddev      NUMERIC,
-      s_volatility  NUMERIC);
+      sma500        NUMERIC);
 
     INSERT INTO summary_data (
       s_date,
       s_fund,
       s_price,
-      s_sma_6,
-      s_sma_12,
-      s_sma_25,
+      s_sma_5,
+      s_sma_10,
+      s_sma_20,
       s_sma_50,
       s_sma_100,
       s_sma_200,
-      s_sma_500,
-      s_bol_mid,
-      s_bol_hig,
-      s_bol_low,
-      s_rsi,
-      s_macd,
-      s_macd_sig,
-      s_stddev,
-      s_volatility)
+      s_sma_500)
     SELECT
       s_date,
       '$fund',
       s_price,
-      s_sma_6,
-      s_sma_12,
-      s_sma_25,
+      s_sma_5,
+      s_sma_10,
+      s_sma_20,
       s_sma_50,
       s_sma_100,
       s_sma_200,
-      s_sma_500,
-      s_bol_mid,
-      s_bol_hig,
-      s_bol_low,
-      s_rsi,
-      s_macd,
-      s_macd_sig,
-      s_stddev,
-      s_volatility
+      s_sma_500
     FROM s_summary_data;
 
 EOF
