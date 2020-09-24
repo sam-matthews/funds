@@ -1,20 +1,3 @@
-/*
-
-  load_price_to_rep.fun
-  Sam Matthews
-  22 February 2019
-
-  Function to output load_price_to_rep calculations. Input is anaytic_lkp and price data.
-  Output will (eventually into a seperate table).
-
-  Useage:
-  1. Compile function.
-  2. SELECT load_price_to_rep(<fund>);
-
-
-
-*/
-
 CREATE OR REPLACE FUNCTION load_price_to_rep() RETURNS VOID AS $$
 
 BEGIN
@@ -31,7 +14,6 @@ BEGIN
   JOIN analytic_lkp l ON l.a_fund = p.p_fund
   WHERE l.a_type = 'PRICE';
 
-  COMMIT;
-
 END;
+
 $$ LANGUAGE plpgsql;

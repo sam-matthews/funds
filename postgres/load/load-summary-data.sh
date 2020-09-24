@@ -1,13 +1,11 @@
 #!/bin/bash
 
-APPNAME="funds"
-APPHOME="${HOME}/Code/${APPNAME}"
-DBHOME="${APPHOME}/postgres"
-CFGHOME="${DBHOME}/cfg"
 
-DATAHOME=${HOME}/Data/${APPNAME}
-UNLOADHOME="${DATAHOME}/unload"
-LOADHOME="${DATAHOME}/load"
+DB_HOME="${APP_HOME}/postgres"
+CFG_HOME="${DB_HOME}/cfg"
+
+UNLOAD_HOME="${DATA_HOME}/unload"
+LOAD_HOME="${DATA_HOME}/load"
 
 # Truncate summary table.
 
@@ -17,7 +15,7 @@ psql << EOF > /dev/null
 EOF
 
 
-for fund in `cat ${CFGHOME}/mw-funds.cfg`
+for fund in `cat ${CFG_HOME}/mw-funds.cfg`
 do
   # echo $fund
 

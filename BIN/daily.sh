@@ -8,7 +8,7 @@
 #  Run daily scripts (after CSV for daily data has been loaded.
 
 # echo "Creating directory: mkdir -p ${DATA_LOAD_HOME}"
-mkdir -p ${DATA_LOAD_HOME}
+# mkdir -p ${DATA_LOAD_HOME}
 
-${HOME}/Code/funds/postgres/load/load-postgres.sh
+${APP_HOME}/postgres/load/load-postgres.sh
 
