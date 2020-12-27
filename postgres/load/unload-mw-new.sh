@@ -1,17 +1,17 @@
 #!/bin/bash
 
 APPNAME="funds"
-APPHOME="${HOME}/Code/${APPNAME}"
+APPHOME="${HOME}/dev/gh/${APPNAME}"
 DBHOME="${APPHOME}/postgres"
 CFGHOME="${DBHOME}/cfg"
 
-DATAHOME=${HOME}/Data/${APPNAME}
+DATAHOME=${HOME}/dev/Data/${APPNAME}
 UNLOADHOME="${DATAHOME}/unload"
 LOADHOME="${DATAHOME}/load"
 
 for fund in `cat ${CFGHOME}/mw-funds.cfg`
 do
-  # echo $fund
+  echo $fund
 
   psql << EOF > /dev/null
 
@@ -26,7 +26,7 @@ do
 	s_stock_volume AS volume,\
 	s_stock_adj_close AS adj_close\
   FROM s_stock)\
-  TO '$UNLOADHOME/MW-20171209-$fund.csv' WITH (FORMAT CSV , HEADER);
+  TO '$UNLOADHOME/$fund.csv' WITH (FORMAT CSV , HEADER);
 
 EOF
 

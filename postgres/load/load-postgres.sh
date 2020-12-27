@@ -8,12 +8,13 @@
 
 CSV_FILE=$1
 APPNAME="funds"
-APPHOME="${HOME}/Code/${APPNAME}"
+APPHOME="${HOME}/dev/gh/${APPNAME}"
 DBHOME="${APPHOME}/postgres"
 CFGHOME="${DBHOME}/cfg"
 SQLHOME="${DBHOME}/sql"
+DBLOADHOME="${DBHOME}/load"
 
-DATAHOME=${HOME}/Data/${APPNAME}
+DATAHOME=${HOME}/dev/Data/${APPNAME}
 UNLOADHOME="${DATAHOME}/unload"
 LOADHOME="${DATAHOME}/load"
 
@@ -45,7 +46,7 @@ echo "load-staging"
 psql -q -f "${SQLHOME}/load-staging.sql"
 
 echo "Unload Motive Wave Data"
-${HOME}/Code/funds/postgres/load/unload-mw-new.sh
+${DBLOADHOME}/unload-mw-new.sh
 
 echo "Delete any NULL Data."
 psql -q -t -c "DELETE FROM price_new WHERE p_price IS NULL"
