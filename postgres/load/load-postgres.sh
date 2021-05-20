@@ -13,6 +13,7 @@ SQL_HOME="${DB_HOME}/sql"
 UNLOAD_HOME="${DATA_HOME}/unload"
 LOAD_HOME="${DATA_HOME}/load"
 
+
 # Commands
 
 if [ ! -z $CSV_FILE ]
@@ -20,11 +21,16 @@ then
   CSVLOADFILE="${CSV_FILE}"
 else
   CSVLOADFILE="${LOAD_HOME}/price-diff/price-diff-s_price.csv"
+  CSVDATEFILE="${LOAD_HOME}/price-diff/price-diff-Start.csv"
+  CURR_DATE=`awk -F',' '{ if ($1 == "New Data") { print $2 } }' ${CSVDATEFILE} | sed 's/\///g'`
 fi
+
+# Backup file
+cp -p ${CSVLOADFILE} ${UNLOAD_HOME}/price-diff-s_price-${CURR_DATE}.csv
 
 # echo "CSVLOADFILE=${CSVLOADFILE}"
 
-CURR_DATE=`date "+%Y-%m-%d"`
+# CURR_DATE=`date "+%Y-%m-%d"`
 
 # echo ${CURR_DATE}
 # echo ${LOADHOME}/price_new-${CURR_DATE}.csv
