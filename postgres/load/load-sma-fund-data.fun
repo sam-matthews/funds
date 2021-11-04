@@ -30,13 +30,13 @@ BEGIN
 
       -- Data for SMA
       INSERT INTO analytic_lkp(a_fund, a_type, a_sequence, a_level1)
-      VALUES(ref.fund_name, 'SMA-6',11,6);
+      VALUES(ref.fund_name, 'SMA-5',11,5);
 
       INSERT INTO analytic_lkp(a_fund, a_type, a_sequence, a_level1)
-      VALUES(ref.fund_name, 'SMA-12',12,12);
+      VALUES(ref.fund_name, 'SMA-10',12,10);
 
       INSERT INTO analytic_lkp(a_fund, a_type, a_sequence, a_level1)
-      VALUES(ref.fund_name, 'SMA-25',13,25);
+      VALUES(ref.fund_name, 'SMA-20',13,20);
 
       INSERT INTO analytic_lkp(a_fund, a_type, a_sequence, a_level1)
       VALUES(ref.fund_name, 'SMA-50',14,50);
@@ -47,39 +47,43 @@ BEGIN
       INSERT INTO analytic_lkp(a_fund, a_type, a_sequence, a_level1)
       VALUES(ref.fund_name, 'SMA-200',16,200);
 
+      INSERT INTO analytic_lkp(a_fund, a_type, a_sequence, a_level1)
+      VALUES(ref.fund_name, 'SMA-500',17,500);
+
+
       -- Data for Bolllinger
 
-      INSERT INTO analytic_lkp(a_fund, a_type, a_sequence)
-      VALUES(ref.fund_name, 'BOL-MIDDLE',21);
+      --INSERT INTO analytic_lkp(a_fund, a_type, a_sequence)
+      --VALUES(ref.fund_name, 'BOL-MIDDLE',21);
 
 
-      INSERT INTO analytic_lkp(a_fund, a_type, a_sequence)
-      VALUES(ref.fund_name, 'BOL-HIGH',22);
+      --INSERT INTO analytic_lkp(a_fund, a_type, a_sequence)
+      --VALUES(ref.fund_name, 'BOL-HIGH',22);
 
-      INSERT INTO analytic_lkp(a_fund, a_type, a_sequence)
-      VALUES(ref.fund_name, 'BOL-LOW',23);
+      --INSERT INTO analytic_lkp(a_fund, a_type, a_sequence)
+      --VALUES(ref.fund_name, 'BOL-LOW',23);
 
       -- Data for RSI
 
-      INSERT INTO analytic_lkp(a_fund, a_type, a_sequence)
-      VALUES(ref.fund_name, 'RSI',31);
+      --INSERT INTO analytic_lkp(a_fund, a_type, a_sequence)
+      --VALUES(ref.fund_name, 'RSI',31);
 
       -- MACD
 
-      INSERT INTO analytic_lkp(a_fund, a_type, a_sequence)
-      VALUES(ref.fund_name, 'MACD',32);
+      --INSERT INTO analytic_lkp(a_fund, a_type, a_sequence)
+      --VALUES(ref.fund_name, 'MACD',32);
 
-      INSERT INTO analytic_lkp(a_fund, a_type, a_sequence)
-      VALUES(ref.fund_name, 'MACD-SIGNAL',33);
+      --INSERT INTO analytic_lkp(a_fund, a_type, a_sequence)
+      --VALUES(ref.fund_name, 'MACD-SIGNAL',33);
 
-      INSERT INTO analytic_lkp(a_fund, a_type, a_level1, a_level2) VALUES (ref.fund_name, 'EMA', 12, 0.1538);
-      INSERT INTO analytic_lkp(a_fund, a_type, a_level1, a_level2) VALUES (ref.fund_name, 'EMA', 26, 0.0741);
+      --INSERT INTO analytic_lkp(a_fund, a_type, a_level1, a_level2) VALUES (ref.fund_name, 'EMA', 12, 0.1538);
+      --INSERT INTO analytic_lkp(a_fund, a_type, a_level1, a_level2) VALUES (ref.fund_name, 'EMA', 26, 0.0741);
 
       -- STDDEV
 
       -- Actual Standard Dev
-      INSERT INTO analytic_lkp(a_fund, a_type, a_sequence, a_level1) VALUES (ref.fund_name, 'STDDEV', 40, 14);
-      INSERT INTO analytic_lkp(a_fund, a_type, a_sequence) VALUES (ref.fund_name, 'VOLATILITY', 41);
+      --INSERT INTO analytic_lkp(a_fund, a_type, a_sequence, a_level1) VALUES (ref.fund_name, 'STDDEV', 40, 14);
+      --INSERT INTO analytic_lkp(a_fund, a_type, a_sequence) VALUES (ref.fund_name, 'VOLATILITY', 41);
     END LOOP;
 
 END;

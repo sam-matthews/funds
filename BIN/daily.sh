@@ -8,7 +8,6 @@
 #  Run daily scripts (after CSV for daily data has been loaded.
 # A change.
 
-
 DATA_LOAD_HOME="$HOME/dev/Data/funds/load/price-diff"
 
 echo "Pre Data Load Steps"
@@ -20,6 +19,5 @@ fi
 
 ${HOME}/dev/gh/funds/postgres/load/load-postgres.sh
 
-# ${HOME}/Code/funds/postgres/load/unload-mw-new.sh
-
+${APP_HOME}/postgres/load/load-postgres.sh
 

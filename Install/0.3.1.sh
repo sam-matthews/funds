@@ -7,17 +7,19 @@
 #
 #  Install 0.3.1 scripts
 
-SQL_HOME="$HOME/Code/funds/postgres/sql"
-TABS_HOME="$HOME/Code/funds/postgres/tabs"
-FUN_HOME="$HOME/Code/funds/postgres/fun"
-LOA_HOME="$HOME/Code/funds/postgres/load"
+APP_BASE="${HOME}/dev/gh/funds"
+SQL_HOME="${APP_BASE}/postgres/sql"
+TAB_HOME="${APP_BASE}/postgres/tabs"
+FUN_HOME="${APP_BASE}/postgres/fun"
+LOA_HOME="${APP_BASE}/postgres/load"
 
 # Create tables
-psql -f ${TABS_HOME}/s_summary-data.tab
-psql -f ${TABS_HOME}/summary-data.tab
-psql -f ${TABS_HOME}/analytic_lkp.tab
-psql -f ${TABS_HOME}/analytic_rep.tab
-psql -f ${TABS_HOME}/study_bollinger_bands.tab
+psql -f ${TAB_HOME}/s_summary-data.tab
+psql -f ${TAB_HOME}/summary-data.tab
+psql -f ${TAB_HOME}/analytic_lkp.tab
+psql -f ${TAB_HOME}/analytic_rep.tab
+psql -f ${TAB_HOME}/study_bollinger_bands.tab
+psql -f ${TAB_HOME}/r_fund.sql
 
 
 # Create extentions

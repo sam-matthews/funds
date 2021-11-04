@@ -7,16 +7,17 @@
 #
 #  Install 0.3.4 scripts
 
-SQL_HOME="$HOME/Code/funds/postgres/sql"
-TABS_HOME="$HOME/Code/funds/postgres/tabs"
-FUN_HOME="$HOME/Code/funds/postgres/fun"
-LOA_HOME="$HOME/Code/funds/postgres/load"
+APP_BASE="${HOME}/dev/gh/funds"
+SQL_HOME="${APP_BASE}/postgres/sql"
+TAB_HOME="${APP_BASE}/postgres/tabs"
+FUN_HOME="${APP_BASE}/postgres/fun"
+LOA_HOME="${APP_BASE}/postgres/load"
 
 # Create tables
 
-psql -q -t -f ${TABS_HOME}/s_summary-data.tab
-psql -q -t -f ${TABS_HOME}/summary-data.tab
-psql -q -t -f ${TABS_HOME}/score_data.tab
+psql -q -t -f ${TAB_HOME}/s_summary-data.tab
+psql -q -t -f ${TAB_HOME}/summary-data.tab
+psql -q -t -f ${TAB_HOME}/score_data.tab
 
 # Create functions
 echo "Loading Functions"

@@ -19,12 +19,13 @@ DECLARE
 
   ref           RECORD;
   ref_a         RECORD;
-  sma_6         NUMERIC;
-  sma_12        NUMERIC;
-  sma_25        NUMERIC;
+  sma_5         NUMERIC;
+  sma_10        NUMERIC;
+  sma_20        NUMERIC;
   sma_50        NUMERIC;
   sma_100       NUMERIC;
   sma_200       NUMERIC;
+  sma_500       NUMERIC;
 
 BEGIN
 

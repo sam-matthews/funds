@@ -5,25 +5,23 @@
 # Update script for updated directory locations.
 
 APPNAME="funds"
-APPHOME="${HOME}/Code/${APPNAME}"
-DBHOME="${APPHOME}/postgres"
+DBHOME="${APP_HOME}/postgres"
 CFGHOME="${DBHOME}/cfg"
 
-DATAHOME=${HOME}/Data/${APPNAME}
-UNLOADHOME="${DATAHOME}/unload"
-LOADHOME="${DATAHOME}/load"
+UNLOAD_HOME="${DATA_HOME}/unload"
+LOAD_HOME="${DATA_HOME}/load"
 
-CSVFILE="FULL-PRICE-DB-LOAD.csv"
+CSV_FILE="FULL-PRICE-DB-LOAD.csv"
 
-CSVLOADFILE="${LOADHOME}/${CSVFILE}"
-echo "${CSVLOADFILE}"
+CSVLOAD_FILE="${LOAD_HOME}/${CSV_FILE}"
+echo "${CSVLOAD_FILE}"
 
 psql << EOF
 
   TRUNCATE s_price;
   TRUNCATE price_new;
 
-  \COPY s_price FROM ${CSVLOADFILE} DELIMITER ',' CSV HEADER
+  \COPY s_price FROM ${CSVLOAD_FILE} DELIMITER ',' CSV HEADER
 
   INSERT INTO price_new(
       p_date,

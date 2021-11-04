@@ -7,10 +7,11 @@
 #
 #  Install 0.3.3 scripts
 
-SQL_HOME="$HOME/Code/funds/postgres/sql"
-TABS_HOME="$HOME/Code/funds/postgres/tabs"
-FUN_HOME="$HOME/Code/funds/postgres/fun"
-LOA_HOME="$HOME/Code/funds/postgres/load"
+APP_BASE="${HOME}/dev/gh/funds"
+SQL_HOME="${APP_BASE}/postgres/sql"
+TAB_HOME="${APP_BASE}/postgres/tabs"
+FUN_HOME="${APP_BASE}/postgres/fun"
+LOA_HOME="${APP_BASE}/postgres/load"
 
 # Create tables
 

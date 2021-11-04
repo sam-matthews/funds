@@ -6,11 +6,13 @@
 \! echo "======================="
 \! echo "Create Table: eom_generation"
 
+DROP TABLE eom_generation
+;
+
 CREATE TABLE IF NOT EXISTS eom_generation(
-  e_date  DATE,
-  e_fund  CHAR(10),
-  e_price REAL,
-  e_diff  REAL,
-  e_sma   REAL)
+  e_date    DATE,
+  e_fund    CHAR(10),
+  e_price   REAL,
+  e_sma_500 REAL)
 ;
 

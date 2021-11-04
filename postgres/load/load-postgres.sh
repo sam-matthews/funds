@@ -24,12 +24,17 @@ if [ ! -z $CSV_FILE ]
 then
   CSVLOADFILE="${CSV_FILE}"
 else
-  CSVLOADFILE="${LOADHOME}/price-diff/price-diff-s_price.csv"
+  CSVLOADFILE="${LOAD_HOME}/price-diff/price-diff-s_price.csv"
+  CSVDATEFILE="${LOAD_HOME}/price-diff/price-diff-Start.csv"
+  CURR_DATE=`awk -F',' '{ if ($1 == "New Data") { print $2 } }' ${CSVDATEFILE} | sed 's/\///g'`
 fi
+
+# Backup file
+cp -p ${CSVLOADFILE} ${UNLOAD_HOME}/price-diff-s_price-${CURR_DATE}.csv
 
 # echo "CSVLOADFILE=${CSVLOADFILE}"
 
-CURR_DATE=`date "+%Y-%m-%d"`
+# CURR_DATE=`date "+%Y-%m-%d"`
 
 # echo ${CURR_DATE}
 # echo ${LOADHOME}/price_new-${CURR_DATE}.csv
@@ -42,8 +47,8 @@ psql -q -t -c "TRUNCATE TABLE s_price;"
 echo "copy new data"
 psql -q -t -c "\COPY s_price FROM ${CSVLOADFILE} DELIMITER ',' CSV HEADER"
 
-echo "load-staging"
-psql -q -f "${SQLHOME}/load-staging.sql"
+echo "Load staging data"
+psql -q -f "${SQL_HOME}/load-staging.sql"
 
 echo "Unload Motive Wave Data"
 ${DBLOADHOME}/unload-mw-new.sh
@@ -52,22 +57,25 @@ echo "Delete any NULL Data."
 psql -q -t -c "DELETE FROM price_new WHERE p_price IS NULL"
 
 echo "UNLOAD price_new data"
-psql -q -t -c "\COPY price_new TO '${UNLOADHOME}/price_new-${CURR_DATE}.csv' DELIMITER ',' CSV HEADER;"
+psql -q -t -c "\COPY price_new TO '${UNLOAD_HOME}/price_new-${CURR_DATE}.csv' DELIMITER ',' CSV HEADER;"
 
 echo "COPY current data to standard CSV file - easy to backup"
-cp -p ${UNLOADHOME}/price_new-${CURR_DATE}.csv ${UNLOADHOME}/latest-price-data.csv
+cp -p ${UNLOAD_HOME}/price_new-${CURR_DATE}.csv ${UNLOAD_HOME}/latest-price-data.csv
+
+echo "Run any changes to load_sma_fund_data changes"
+psql -f ${DB_HOME}/load/load-sma-fund-data.fun
 
 echo "RELOAD DATA INTO analytic_lkp BASED ON r_fund TABLE."
-psql -q -t -c "SELECT FROM load_sma_fund_data();"
+psql -q -t -c "SELECT FROM load_sma_fund_data();" -c "\q"
 
 echo "TRUNCATE analytic_rep TABLE"
 psql -q -t -c "TRUNCATE TABLE analytic_rep;"
 
 echo "LOAD price DATA FROM price_new TO analytic_rep"
-psql -q -t -c "SELECT FROM load_price_to_rep();"
+psql -q -t -c "SELECT FROM load_price_to_rep();" -c "\q"
 
 echo "LOAD SMA DATA INTO analytic_rep"
-psql -q -t -c "SELECT FROM sma();"
+psql -q -t -c "SELECT FROM sma();" -c "\q"
 
 # echo "Generate STDDEV and Volatility"
 # psql -q -t -c "SELECT FROM stddev();"
@@ -84,11 +92,11 @@ psql -q -t -c "SELECT FROM sma();"
 # echo "Generate MACD"
 # psql -q -t -c "SELECT FROM macd();"
 
-# echo "Generate summary data"
-# ${HOME}/Code/funds/postgres/load/load-summary-data.sh
+#echo "Generate summary data"
+#${DB_HOME}/load/load-summary-data.sh
 
 # echo "Generate score data."
 # psql -q -t -c "select from study_score();"
 
 echo "Removing files older than 10 days."
-find ${LOADHOME} -name 'FULL-*-PRICE.csv' -mtime +10 -exec rm {} \;
+find ${LOAD_HOME} -name 'FULL-*-PRICE.csv' -mtime +10 -exec rm {} \;
