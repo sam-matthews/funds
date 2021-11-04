@@ -6,6 +6,8 @@
 #  22nd October 2018
 #
 #  Run daily scripts (after CSV for daily data has been loaded.
+# A change.
+
 
 DATA_LOAD_HOME="$HOME/dev/Data/funds/load/price-diff"
 
