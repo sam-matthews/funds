@@ -7,12 +7,16 @@
 # Added release tag 0.1
 
 CSV_FILE=$1
-DB_HOME="${APP_HOME}/postgres"
-CFG_HOME="${DB_HOME}/cfg"
-SQL_HOME="${DB_HOME}/sql"
-UNLOAD_HOME="${DATA_HOME}/unload"
-LOAD_HOME="${DATA_HOME}/load"
+APPNAME="funds"
+APPHOME="${HOME}/dev/gh/${APPNAME}"
+DBHOME="${APPHOME}/postgres"
+CFGHOME="${DBHOME}/cfg"
+SQLHOME="${DBHOME}/sql"
+DBLOADHOME="${DBHOME}/load"
 
+DATAHOME=${HOME}/dev/Data/${APPNAME}
+UNLOADHOME="${DATAHOME}/unload"
+LOADHOME="${DATAHOME}/load"
 
 # Commands
 
@@ -47,7 +51,7 @@ echo "Load staging data"
 psql -q -f "${SQL_HOME}/load-staging.sql"
 
 echo "Unload Motive Wave Data"
-${DB_HOME}/load/unload-mw-new.sh
+${DBLOADHOME}/unload-mw-new.sh
 
 echo "Delete any NULL Data."
 psql -q -t -c "DELETE FROM price_new WHERE p_price IS NULL"
