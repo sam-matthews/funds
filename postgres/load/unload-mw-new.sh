@@ -1,23 +1,14 @@
 #!/bin/bash
 
-
-APPNAME="funds"
-APPHOME="${HOME}/dev/gh/${APPNAME}"
-DBHOME="${APPHOME}/postgres"
+DBHOME="${APP_HOME}/postgres"
 CFGHOME="${DBHOME}/cfg"
 
-DATAHOME=${HOME}/dev/Data/${APPNAME}
-UNLOADHOME="${DATAHOME}/unload"
-LOADHOME="${DATAHOME}/load"
+UNLOADHOME="${DATA_HOME}/unload"
+LOADHOME="${DATA_HOME}/load"
 
-
-UNLOAD_HOME="${DATA_HOME}/unload"
-LOAD_HOME="${DATA_HOME}/load"
-
-for fund in `cat ${CFG_HOME}/mw-funds.cfg`
+for fund in `cat ${CFGHOME}/mw-funds.cfg`
 do
-  echo $fund
-
+  
   psql << EOF > /dev/null
 
     SELECT mw_new('$fund');
@@ -32,7 +23,6 @@ do
 	s_stock_adj_close AS adj_close\
   FROM s_stock)\
   TO '$UNLOADHOME/$fund.csv' WITH (FORMAT CSV , HEADER);
-
 
 EOF
 

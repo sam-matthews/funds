@@ -7,16 +7,13 @@
 # Added release tag 0.1
 
 CSV_FILE=$1
-APPNAME="funds"
-APPHOME="${HOME}/dev/gh/${APPNAME}"
-DBHOME="${APPHOME}/postgres"
+DBHOME="${APP_HOME}/postgres"
 CFGHOME="${DBHOME}/cfg"
 SQLHOME="${DBHOME}/sql"
 DBLOADHOME="${DBHOME}/load"
 
-DATAHOME=${HOME}/dev/Data/${APPNAME}
-UNLOADHOME="${DATAHOME}/unload"
-LOADHOME="${DATAHOME}/load"
+UNLOADHOME="${DATA_HOME}/unload"
+LOADHOME="${DATA_HOME}/load"
 
 # Commands
 
@@ -24,20 +21,13 @@ if [ ! -z $CSV_FILE ]
 then
   CSVLOADFILE="${CSV_FILE}"
 else
-  CSVLOADFILE="${LOAD_HOME}/price-diff/price-diff-s_price.csv"
-  CSVDATEFILE="${LOAD_HOME}/price-diff/price-diff-Start.csv"
+  CSVLOADFILE="${LOADHOME}/price-diff/price-diff-s_price.csv"
+  CSVDATEFILE="${LOADHOME}/price-diff/price-diff-Start.csv"
   CURR_DATE=`awk -F',' '{ if ($1 == "New Data") { print $2 } }' ${CSVDATEFILE} | sed 's/\///g'`
 fi
 
 # Backup file
-cp -p ${CSVLOADFILE} ${UNLOAD_HOME}/price-diff-s_price-${CURR_DATE}.csv
-
-# echo "CSVLOADFILE=${CSVLOADFILE}"
-
-# CURR_DATE=`date "+%Y-%m-%d"`
-
-# echo ${CURR_DATE}
-# echo ${LOADHOME}/price_new-${CURR_DATE}.csv
+cp -p ${CSVLOADFILE} ${UNLOADHOME}/price-diff-s_price-${CURR_DATE}.csv
 
 echo "Load new data"
 
@@ -48,7 +38,7 @@ echo "copy new data"
 psql -q -t -c "\COPY s_price FROM ${CSVLOADFILE} DELIMITER ',' CSV HEADER"
 
 echo "Load staging data"
-psql -q -f "${SQL_HOME}/load-staging.sql"
+psql -q -f "${SQLHOME}/load-staging.sql"
 
 echo "Unload Motive Wave Data"
 ${DBLOADHOME}/unload-mw-new.sh
@@ -57,13 +47,13 @@ echo "Delete any NULL Data."
 psql -q -t -c "DELETE FROM price_new WHERE p_price IS NULL"
 
 echo "UNLOAD price_new data"
-psql -q -t -c "\COPY price_new TO '${UNLOAD_HOME}/price_new-${CURR_DATE}.csv' DELIMITER ',' CSV HEADER;"
+psql -q -t -c "\COPY price_new TO '${UNLOADHOME}/price_new-${CURR_DATE}.csv' DELIMITER ',' CSV HEADER;"
 
 echo "COPY current data to standard CSV file - easy to backup"
-cp -p ${UNLOAD_HOME}/price_new-${CURR_DATE}.csv ${UNLOAD_HOME}/latest-price-data.csv
+cp -p ${UNLOADHOME}/price_new-${CURR_DATE}.csv ${UNLOADHOME}/latest-price-data.csv
 
 echo "Run any changes to load_sma_fund_data changes"
-psql -f ${DB_HOME}/load/load-sma-fund-data.fun
+psql -f ${DBHOME}/load/load-sma-fund-data.fun
 
 echo "RELOAD DATA INTO analytic_lkp BASED ON r_fund TABLE."
 psql -q -t -c "SELECT FROM load_sma_fund_data();" -c "\q"
@@ -99,4 +89,4 @@ psql -q -t -c "SELECT FROM sma();" -c "\q"
 # psql -q -t -c "select from study_score();"
 
 echo "Removing files older than 10 days."
-find ${LOAD_HOME} -name 'FULL-*-PRICE.csv' -mtime +10 -exec rm {} \;
+find ${LOADHOME} -name 'FULL-*-PRICE.csv' -mtime +10 -exec rm {} \;
