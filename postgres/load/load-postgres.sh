@@ -6,17 +6,27 @@
 # Add Funds to a lookup table, then scan through this table instead of looking through an external file.
 # Added release tag 0.1
 
+DEBUG=ON
+
 CSV_FILE=$1
-DBHOME="${APP_HOME}/postgres"
+DBHOME="${FUNDS_APP}/postgres"
 CFGHOME="${DBHOME}/cfg"
 SQLHOME="${DBHOME}/sql"
 DBLOADHOME="${DBHOME}/load"
 
-UNLOADHOME="${DATA_HOME}/unload"
-LOADHOME="${DATA_HOME}/load"
+UNLOADHOME="${FUNDS_DAT}/unload"
+LOADHOME="${FUNDS_DAT}/load"
+
+
+if [[ ${DEBUG} -eq "ON" ]]; then
+  echo "LOADHOME=$LOADHOME"
+  echo "UNLOADHOME=$UNLOADHOME"
+  echo "CFG_HOME=$CFGHOME"
+fi
 
 # Commands
 
+echo "Step 1. Define parameters"
 if [ ! -z $CSV_FILE ]
 then
   CSVLOADFILE="${CSV_FILE}"
@@ -27,6 +37,7 @@ else
 fi
 
 # Backup file
+
 cp -p ${CSVLOADFILE} ${UNLOADHOME}/price-diff-s_price-${CURR_DATE}.csv
 
 echo "Load new data"
@@ -43,6 +54,8 @@ psql -q -f "${SQLHOME}/load-staging.sql"
 echo "Unload Motive Wave Data"
 ${DBLOADHOME}/unload-mw-new.sh
 
+exit 10
+
 echo "Delete any NULL Data."
 psql -q -t -c "DELETE FROM price_new WHERE p_price IS NULL"
 
@@ -52,20 +65,20 @@ psql -q -t -c "\COPY price_new TO '${UNLOADHOME}/price_new-${CURR_DATE}.csv' DEL
 echo "COPY current data to standard CSV file - easy to backup"
 cp -p ${UNLOADHOME}/price_new-${CURR_DATE}.csv ${UNLOADHOME}/latest-price-data.csv
 
-echo "Run any changes to load_sma_fund_data changes"
-psql -f ${DBHOME}/load/load-sma-fund-data.fun
+#echo "Run any changes to load_sma_fund_data changes"
+#psql -f ${DBHOME}/load/load-sma-fund-data.fun
 
-echo "RELOAD DATA INTO analytic_lkp BASED ON r_fund TABLE."
-psql -q -t -c "SELECT FROM load_sma_fund_data();" -c "\q"
+#echo "RELOAD DATA INTO analytic_lkp BASED ON r_fund TABLE."
+#psql -q -t -c "SELECT FROM load_sma_fund_data();" -c "\q"
 
-echo "TRUNCATE analytic_rep TABLE"
-psql -q -t -c "TRUNCATE TABLE analytic_rep;"
+#echo "TRUNCATE analytic_rep TABLE"
+#psql -q -t -c "TRUNCATE TABLE analytic_rep;"
 
-echo "LOAD price DATA FROM price_new TO analytic_rep"
-psql -q -t -c "SELECT FROM load_price_to_rep();" -c "\q"
+#echo "LOAD price DATA FROM price_new TO analytic_rep"
+#psql -q -t -c "SELECT FROM load_price_to_rep();" -c "\q"
 
-echo "LOAD SMA DATA INTO analytic_rep"
-psql -q -t -c "SELECT FROM sma();" -c "\q"
+#echo "LOAD SMA DATA INTO analytic_rep"
+#psql -q -t -c "SELECT FROM sma();" -c "\q"
 
 # echo "Generate STDDEV and Volatility"
 # psql -q -t -c "SELECT FROM stddev();"
