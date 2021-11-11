@@ -1,10 +1,20 @@
 #!/bin/bash
 
-DBHOME="${APP_HOME}/postgres"
+DEBUG=ON
+DBHOME="${FUNDS_APP}/postgres"
 CFGHOME="${DBHOME}/cfg"
 
-UNLOADHOME="${DATA_HOME}/unload"
-LOADHOME="${DATA_HOME}/load"
+UNLOADHOME="${FUNDS_DAT}/unload"
+LOADHOME="${FUNDS_DAT}/load"
+
+if [[ ${DEBUG} -eq "ON" ]]; then
+  echo "Starting $0"
+  echo "DBHOME=$DBHOME"
+  echo "CFGHOME=$CFGHOME"
+
+  ls -l ${CFGHOME}/mw-funds.cfg
+  cat ${CFGHOME}/mw-funds.cfg
+fi
 
 for fund in `cat ${CFGHOME}/mw-funds.cfg`
 do
