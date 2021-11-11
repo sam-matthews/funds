@@ -8,7 +8,9 @@
 #  Run daily scripts (after CSV for daily data has been loaded.
 # A change.
 
-DATA_LOAD_HOME="$HOME/dev/Data/funds/load/price-diff"
+DATA_LOAD_HOME="${FUNDS_DAT}/load/price-diff"
+FUNDS_LOAD="${FUNDS_APP}/postgres/load"
+FUNDS_BIN="${FUNDS_APP}/BIN"
 
 echo "Pre Data Load Steps"
 if [[ ! -d ${DATA_LOAD_HOME} ]]
@@ -17,7 +19,7 @@ then
   exit 10
 fi
 
-${HOME}/dev/gh/funds/postgres/load/load-postgres.sh
+echo "Running load-postgres.sh"
 
-${APP_HOME}/postgres/load/load-postgres.sh
+${FUNDS_LOAD}/load-postgres.sh
 
